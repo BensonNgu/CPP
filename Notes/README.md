@@ -1,4 +1,4 @@
-# Notes for CSCI 251 Advanced Programming
+# Notes for CPP
 |Content|Section|
 |---|---|
 |[<kbd>Procedural-Programming</kbd>](#procedural-programming)|[<kbd>Why is it useful?</kbd>](#why-is-it-useful)|
