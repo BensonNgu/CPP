@@ -1,0 +1,25 @@
+# ninja log v5
+1	91	7306188346894692	CMakeFiles/functions.dir/Functions/src/main.cpp.obj	1b70e0deffefd204
+9	1469	7306188360670317	CMakeFiles/functions.dir/Functions/src/print.cpp.obj	29fab919b4bae776
+1477	1714	7306188363070345	functions.exe	65a85b1c4c62f85f
+2	266	7306191493628772	build.ninja	abe7b39318a98fb9
+0	838	7306192396247020	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+839	1045	7306192398245802	file.exe	5b43be33b2df451a
+7	784	7306192540804476	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+785	986	7306192542763152	file.exe	5b43be33b2df451a
+5	1375	7306193097056173	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+1377	1720	7306193100461721	file.exe	5b43be33b2df451a
+6	681	7306194484461933	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+682	925	7306194486829312	file.exe	5b43be33b2df451a
+7	722	7306195388586277	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+723	914	7306195390432770	file.exe	5b43be33b2df451a
+5	633	7306195581356570	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+634	812	7306195583094745	file.exe	5b43be33b2df451a
+5	697	7306196231448965	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+698	907	7306196233472626	file.exe	5b43be33b2df451a
+6	667	7306196330973157	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+667	864	7306196332904873	file.exe	5b43be33b2df451a
+6	809	7306196539939942	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+810	1012	7306196541908690	file.exe	5b43be33b2df451a
+6	691	7306197517115923	CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj	35b847459984a8d5
+692	909	7306197519266924	file.exe	5b43be33b2df451a
