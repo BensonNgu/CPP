@@ -6,4 +6,4 @@ The notes source is from :
 - YouTube
 
 
-[Start Reading The Notes](https://github.com/BensonNgu/CPP/tree/main/Notes#notesforcpp)
+[Start Reading The Notes](https://github.com/BensonNgu/CPP/tree/main/Notes#notes-for-cpp)
