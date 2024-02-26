@@ -695,6 +695,9 @@ int main(){
 ### > Unions
 
 ---
+## Class and UML
+
+---
 ## Constructors and Desctructors
 ### > Types of Member Functions
 - **Inpector functions (access functions/ getter)**
@@ -725,6 +728,15 @@ int main(){
   - non-default (at least one argument)
 #### Desctructor
 - called for an object whenever the object goes out of scope
+---
+## Overloading 
+### > Subheading
+---
+## Class/Object Relation
+### > Subheading
+---
+## Polymorphism and Multiple inheritance
+### > Subheading
 ---
 ## Handling files
 ### > Subheading
@@ -906,3 +918,5 @@ sizeof(int*): 8
 ### > <mark style="background-color:#FFA50035;">`unsigned`</mark> operator
 - the variables that declare as `unsigned` will only store values that is greater than or equal to 0
 - if not, the compiler will still compile it but a  gibberish number will be passed to cout
+
+### > <mark style="background-color:#FFA50035;">`friend`</mark> operator
