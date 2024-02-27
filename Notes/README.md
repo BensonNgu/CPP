@@ -3,10 +3,10 @@
 |---|---|
 |[<kbd>Procedural-Programming</kbd>](#procedural-programming)|[<kbd>Why is it useful?</kbd>](README.md#-why-is-it-useful)|
 |[<kbd>Memory and Pointer</kbd>](#memory-and-pointer)|[<kbd>Pointing to memory</kbd>](README.md#-pointing-to-memory)<br>[<kbd>Referencing</kbd>](README.md#-referencing)<br>[<kbd>Pass by reference</kbd>](README.md#-pass-by-reference)<br>[<kbd>Pointers</kbd>](README.md#-pointers)<br>[<kbd>Summary</kbd>](README.md#-summary-of--and--operators)|
-|[<kbd>Array</kbd>](#arrays)|[<kbd>Arrays and Pointers</kbd>](#arrays-and-pointers)|
+|[<kbd>Array</kbd>](#arrays)|[<kbd>Arrays and Pointers</kbd>](README.md#-arrays-and-pointers)|
 |[<kbd>Function Pointer</kbd>](#function-pointer)||
-|[<kbd>Constructor and Destructor</kbd>](#constructors-and-desctructors)|[<kbd>Type of Member Functions</kbd>](#types-of-member-functions)<br>[<kbd>Object Management</kbd>](#object-management)<br>[<kbd></kbd>]()|
-|[<kbd>Special Keyword</kbd>](#special-keyword)|[<kbd>`void*` (void pointer)</kbd>](#void-void-pointer) <br>[<kbd>`typedef`</kbd>](#typedef)<br>[<kbd>`auto`</kbd>](#auto)<br>[<kbd>`nullptr` (Null Pointer)</kbd>](#nullptr-null-pointer)<br>[<kbd>const vs constextr</kbd>](#const-vs-constextr)<br>[<kbd>`sizeof` operator)</kbd>](#sizeof-operator)| 
+|[<kbd>Constructor and Destructor</kbd>](#constructors-and-desctructors)|[<kbd>Type of Member Functions</kbd>](README.md#-types-of-member-functions)<br>[<kbd>Object Management</kbd>](README.md#-object-management)<br>[<kbd></kbd>]()|
+|[<kbd>Special Keyword</kbd>](#special-keyword)|[<kbd>`void*` (void pointer)</kbd>](README.md#-void-void-pointer) <br>[<kbd>`typedef`</kbd>](README.md#-typedef)<br>[<kbd>`auto`</kbd>](README.md#-auto)<br>[<kbd>`nullptr` (Null Pointer)</kbd>](README.md#-nullptr-null-pointer)<br>[<kbd>const vs constextr</kbd>](README.md#-const-vs-constextr)<br>[<kbd>`sizeof` operator)</kbd>](README.md#-sizeof-operator)| 
 
 
 ## Procedural Programming
