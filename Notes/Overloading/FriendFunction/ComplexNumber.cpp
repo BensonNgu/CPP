@@ -18,3 +18,13 @@ ComplexNumber operator+(const ComplexNumber& a, const ComplexNumber& b){
 void ComplexNumber::print(){
     cout << "real: " << real << " img: " << img << endl;
 }
+
+ostream& operator<<(ostream& os, const ComplexNumber& a){
+    os << a.real << " " << a.img;
+    return os;
+}
+
+istream& operator>>(istream& is, ComplexNumber& a){
+    is >> a.real >> a.img;
+    return is;
+}

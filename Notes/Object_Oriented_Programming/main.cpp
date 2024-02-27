@@ -105,17 +105,23 @@ public:
     }
 };
 
+class Example{
+    friend void release(Example* ex);
+    protected :
+        ~Example(){}
+    public :
+        Example(){
+            cout << "Constructor called" << endl;
+        }
+};
+
+void release(Example* ex){
+    cout << "Release called" << endl;
+    delete ex;
+}
+
 
 int main(){
-    Test2 obj1(10);
-    Test2 obj2(0);
-    cout << "\nBefore move assignment\n";
-    obj1.print();
-    obj2.print();
 
-    obj2 = move(obj1);
-    cout << "\nAfter move assignment\n";
-    obj1.print();
-    obj2.print();
     return 0;
 }

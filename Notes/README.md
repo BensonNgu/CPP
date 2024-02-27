@@ -693,10 +693,21 @@ int main(){
 }
 ```
 ### > Unions
-
+- similar to struct
+- but the fields of a union all share the same memory
+  ```cpp
+  union myType{
+    int i;
+    float f;
+  }
+  ```
 ---
 ## Class and UML
-
+### > What is a class
+- user defined data type
+- provide ==description== for the building type
+- provide ==prototype(blueprint)== for objects
+- provide ==convenient way to group related data== and the ==function which are used to process the data==
 ---
 ## Constructors and Desctructors
 ### > Types of Member Functions
@@ -1136,32 +1147,91 @@ double getMax(int x, int y);
 ### > Ways to define operator overloading:
   1. member functions
      1. A function that overload =, (), [] or -> for a class must be a member function for this class.
-      2. Function prototype: 
-      ```cpp
-      ClassName operatorSymbol (const ClassName&) const;
-      ```
-      3. Function definition: 
-      ```cpp
-      ClassName ClassName::operatorsymbol(const ClassName& obj)const
-      {
-        statement;
-      }
-      ```
+     2. Function prototype: 
+        ```cpp
+        ClassName operatorSymbol (const ClassName&) const;
+        ```
+     3. Function definition: 
+        ```cpp
+        ClassName ClassName::operatorsymbol(const ClassName& obj)const
+        {
+          statement;
+        }
+        ```
       [Example](./Overloading/MemberFunction/)
   2. friend functions
      1. if the left operand of the operator is an object of a different class, then a friend function must be defined
      2. Function prototype: 
-      ```cpp
-      friend ClassName operatorSymbol (const ClassName&, const ClassName&);
-      ```
-      3. Function definition: 
-      ```cpp
-      ClassName operatorsymbol(const ClassName& obj1, const ClassName& obj2)
-      {
-        statement;
-      }
-      ```
+        ```cpp
+        friend ClassName operatorSymbol (const ClassName&, const ClassName&);
+        ```
+     3. Function definition: 
+        ```cpp
+        ClassName operatorsymbol(const ClassName& obj1, const ClassName& obj2)
+        {
+          statement;
+        }
+        ```
       [Example](./Overloading/FriendFunction/)
+      [More on friend](README.md#-)
+  3. Copy Assignment Operator
+     1. Function prototype: 
+        ```cpp
+        const ClassName& operator= (const ClassName&) const;
+        ```
+     2. Function definition: 
+        ```cpp
+        ClassName& ClassName::operator=(const ClassName& obj)const
+        {
+          if(this != obj){
+            statement;
+          }
+          return *this;
+        }
+        ```
+        [Example](./Overloading/MemberFunction/)
+  4. Relational Operators 
+     1. Function prototype: 
+        ```cpp
+        const bool operator== (const ClassName&)const;
+        ```
+     2. Function definition: 
+        ```cpp
+        bool ClassName::operator==(const ClassName& obj)const
+        {
+          statement;
+        }
+        ```
+        [Example](./Overloading/MemberFunction/)
+  5. Stream Operation
+      **`<<` operator overloading**
+     1. Function prototype: 
+        ```cpp
+        friend ostream operator<< (ostream&, const ClassName&);
+        ```
+     2. Function definition: 
+        ```cpp
+        ostream operator<< (ostream& os, const ClassName& a);
+        {
+          os << a.attr1 << a.attr2;
+          return os;
+        }
+        ```
+      **`<<` operator overloading**
+     1. Function prototype: 
+        ```cpp
+        friend istream operator>> (istream&, ClassName&);
+        ```
+     2. Function definition: 
+        ```cpp
+        ostream operator>> (istream& is, ClassName& a);
+        {
+          is >> a.attr1 >> a.attr2;
+          return is;
+        }
+        ```
+        [Example](./Overloading/FriendFunction/FriendFunction.cpp)
+
 ---
 ## Class/Object Relation
 ### > Subheading
@@ -1349,3 +1419,35 @@ sizeof(int*): 8
 ### > <mark style="background-color:#FFA50035;">`unsigned`</mark> operator
 - the variables that declare as `unsigned` will only store values that is greater than or equal to 0
 - if not, the compiler will still compile it but a  gibberish number will be passed to cout
+### > <mark style="background-color:#FFA50035;">`friend`</mark> 
+- we are not only can  declare a friend function, we can declare a friend class by following way:
+  ```cpp
+  class ClassA{
+    friend class ClassB;
+    int a;
+  };
+
+  class ClassB{
+    void func(ClassA &p){p.a = 1;}
+  };
+  ```
+- friendship is not transitive
+  ```cpp
+  class ClassA{
+    friend class ClassB;
+    int a;
+  };
+
+  class ClassB{
+    friend class ClassC;
+  };
+
+  class ClassC{
+    void func(ClassA &p){p.a = 1;}
+  };
+  // ClassC is not a friend of ClassA, thus error show : member "ClassA::a" is inaccessible
+  ```
+  - friend can access to private and protected members
+    [Example](./Overloading/FriendFunction/FriendFunction.cpp)
+  - friend with multiple classes
+    [Example](./Overloading/FriendFunction/FriendFunction.cpp)

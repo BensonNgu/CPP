@@ -40,9 +40,27 @@ public:
     ~Test2(){cout << "Desctructor called " << name << endl;};
 };
 
+class Example{
+    friend void release(Example* ex);
+    private :
+        ~Example(){cout << "Destructor called" << endl;};
+    public :
+        Example(){
+            cout << "Constructor called" << endl;
+        }
+};
+
+void release(Example* ex){
+    cout << "Release called" << endl;
+    delete ex;
+}
+
 
 
 const double Test::aStaticDouble = 5.0;
 int main(){
+    cout << "Hello world" << endl;
+    Example *ex = new Example();
+    release(ex);
     return 0;
 }
