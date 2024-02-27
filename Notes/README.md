@@ -782,27 +782,314 @@ Destructor called
 #### Question time: 
 1. since both of them have to delete the pointer object when we exit the program, why we still need the descturctor?
    1. **Resource Management**
-     - If ==the class holds any dynamically allocated memory or external resources== (like file handles or network connections), the destructor provides a convenient place to release those resources, ensuring that no memory leaks or resource leaks occur.
+       - If ==the class holds any dynamically allocated memory or external resources== (like file handles or network connections), the destructor provides a convenient place to release those resources, ensuring that no memory leaks or resource leaks occur.
     2. **Custom Cleanup Logic**
-      - A destructor allows you to define custom cleanup logic specific to your class. 
-      - For example, you may need to close files, release locks, or log information before the object is destroyed.
+         - A destructor allows you to define custom cleanup logic specific to your class. 
+         - For example, you may need to close files, release locks, or log information before the object is destroyed.
     3. **Guaranteed Cleanup**
-      - By explicitly defining a destructor, you ensure that cleanup operations are performed even if exceptions occur during the lifetime of the object. 
-      - This helps maintain program correctness and prevents resource leaks.
+         - By explicitly defining a destructor, you ensure that cleanup operations are performed even if exceptions occur during the lifetime of the object. 
+         - This helps maintain program correctness and prevents resource leaks.
     4. **Class Invariants**
-      - Destructors can be used to enforce class invariants or state consistency. 
-      - They ensure that the object is left in a valid state when it is destroyed, which can be important for maintaining program integrity.
+         - Destructors can be used to enforce class invariants or state consistency. 
+         - They ensure that the object is left in a valid state when it is destroyed, which can be important for maintaining program integrity.
     5. **Clearer Code Intent**
-      - Explicitly defining a destructor communicates the intent of the class more clearly to other developers. 
-      - It indicates that resource cleanup is an essential part of the class's functionality.
+         - Explicitly defining a destructor communicates the intent of the class more clearly to other developers. 
+         - It indicates that resource cleanup is an essential part of the class's functionality.
 2. Can constructor be private
    - Yes
    - Reason to make it private:
       1. we may create an object with certain values only under conditions controlled from within an object 
       2. Can be used in the context of [inheritance](#inheritance)
-### > 
+### > Copy And Moving
+#### Copy
+- in two form
+  - implicit
+    - the compiler makes a copy of the content of an object into a new memort location of the same type
+  - explicit
+    - programmer specifies that a particular object's values are to be transferred to the memory location of another object
+1. Copy Constructor
+   - This is defined whether we specify other constructors or not, if it’s needed by the compiler
+     - If implicitly, the compiller will perform member-wise copy of thedata members from the source object to the new object
+   - Why we explicitly define our copy constructor
+      1. when your class contains dynamically allocated memory
+      2. file handling
+      3. other resource that need to be properly managed during copying
+   - When is it been invoked
+     - Declare an object and use it to initialise another object of the same class
+      ```cpp
+      Point p1(p2);
+      Point p1 = p2;
+      ```
+     - Pass an object by value to a function
+      ```cpp
+      float getDistance(Point pointA);
+      ```
+     - Return an object by value from function
+      ```cpp
+      Point getPosition();
+      ```
+2. Synthesised copying / Copy Assignment
+     - The defult synthesised copy constructor makes a member-by-member copy of ==non-static data members== of the objects
+    - Problem occur when copying pointers or dynamic memory, it may be too ==shallow==
+      - a shallow copy of that object will copy the memory addresses stored in those pointers, rather than creating new memory space for the copied object's data
+      - To solve this problem, we need to define a custom copy constructor which will perform a deep copy
+    - *shallow*
+    ```cpp
+    class Pointier 
+    {
+      public:
+        int *x;
+        Pointier()	{ x = new int(5); }
+        void display()	{ cout << *x << endl; }
+    };
+    int main(){
+      Pointier PointA;
+      Pointier PointB(PointA);
+      PointA.display();
+      PointB.display();
+      *(PointB.x)=3;
+      PointA.display();
+      PointB.display();
+    }
+    ```
+    ```shell
+    5
+    5
+    3
+    3
+    ```
+    - *Deep copy*
+    ```cpp
+      class Pointier 
+    {
+      public:
+        int *x;
+        Pointier()	{ x = new int(5); }
+        Pointier(const Pointier& point){x = new int(*point.x);}
+        void display()	{ cout << *x << endl; }
+    };
+    int main(){
+      Pointier PointA;
+      Pointier PointB(PointA);
+      PointA.display();
+      PointB.display();
+      *(PointB.x)=3;
+      PointA.display();
+      PointB.display();
+    }
+    ```
+    ```shell
+    5
+    5
+    5
+    3
+    ```
+  3. Copy Assignment Operator: `X& operator=(const X&)`
+      - copy assignment + operator overload
+      - both object must be initialise first
+      - perform deep copy as needed just like the copy constructor
+      - It will return a reference of their left-hand operand
+      ```cpp
+      class Pointier 
+      {
+      public:
+          int *x;
+          Pointier(){x = new int(1);}
+          Pointier(int num){
+              x = new int(num);
+          }
+          Pointier& operator=(const Pointier& point){
+              x = new int(*point.x);
+              return *this;
+          }
+          void display()	{ cout << *x << endl; }
+      };
+
+
+      int main(){
+          Pointier PointA(5), PointB;
+          PointA.display();
+          PointB.display();
+          cout << "Copy PointA to PointB: " << endl;
+          PointB = PointA;
+          PointA.display();
+          PointB.display();
+          cout <<  "Change x of PointB to 3:" << endl;
+          *(PointB.x)=3;
+          PointA.display();
+          PointB.display();
+
+          return 0;
+      }
+      ```
+      Output : 
+      ```shell
+      5
+      1
+      Copy PointA to PointB:
+      5
+      5
+      Change x of PointB to 3:
+      5
+      3
+      ```
+##### > Summary for copy contructor and copy assignment
+> while both the copy constructor and copy assignment operator are used to create copies of objects, the copy constructor is invoked during object creation or initialization, while the copy assignment operator is invoked after the objects have been initialized, when one object is assigned the value of another.
+
+#### Moving
+1. Move Constructor : X(X&&);
+   - destroy the thing that being copied after copying
+   - Purpose:
+      1. Efficiency
+     - Move constructors allow for the transfer of resources without the overhead of deep copying. 
+     - Instead of duplicating the resource, ownership of the resource is transferred from the source object to the destination object.
+
+      2. Avoiding Unnecessary Copies
+        - In scenarios where temporary objects are created during expressions or function returns, move constructors can prevent unnecessary copies by efficiently moving resources from the temporary object to the destination object.
+
+      3. Performance Optimization
+        - By utilizing move semantics, move constructors can significantly improve the performance of operations involving resource management, such as resizing containers or passing objects by value.
+
+      4. Resource Management
+        - Move constructors are essential for managing resources that cannot be easily copied or duplicated, such as file handles, database connections, or large dynamically allocated memory blocks
+      ```cpp
+      #include <utility>
+      #include <iostream>
+      #include <string>
+
+      using namespace std;
+
+      class Test {
+      private:
+          int* data; // Pointer to dynamically allocated data
+
+      public:
+          // Constructor
+          Test(int value) : data(new int(value)) {
+              cout << "Constructor called for " << value << endl;
+          }
+
+          // Move constructor
+          Test(Test&& other) noexcept : data(other.data) {
+              cout << "Move constructor called for " << *data << endl;
+              other.data = nullptr; // Reset the source object's pointer
+          }
+
+          // Destructor
+          ~Test() {
+              delete data; // Deallocate dynamically allocated memory
+              cout << "Destructor called \n";
+          }
+
+          // Print method
+          void print() const {
+            if(data != nullptr){
+            cout << "Data: " << *data << std::endl;
+            }else{
+              cout << "Data does not exists\n";
+            }
+          }
+      };
+
+
+      int main(){
+          Test obj1(100); // Create object with value 100
+          Test obj2(move(obj1)); // Move construct obj2 from obj1
+
+          obj1.print(); // Accessing obj1 after move is safe but undefined behavior
+          obj2.print(); // Print the value stored in obj2
+
+          return 0;
+      }
+      ```
+      Output : 
+      ```shell
+      Constructor called for 100
+      Move constructor called for 100
+      Data does not exists
+      Data: 100
+      Destructor called
+      Destructor called
+      ```
+      - It is not only applicable to custom class object
+      ```cpp
+      #include <utility>
+
+      int interger = 10;
+      int &ref = integer; // normal referencing and copy value
+      int &&ref2 = move(integer); //the value of integer is copied to ref2, but itself is not being destroyed
+      ``` 
+2. Move Assignment : `X& operator=(X&&)`
+    ```cpp
+    #include <utility>
+      #include <iostream>
+      #include <string>
+
+      using namespace std;
+
+      class Test {
+      private:
+          int* data; // Pointer to dynamically allocated data
+
+      public:
+          // Constructor
+          Test(int value) : data(new int(value)) {
+              cout << "Constructor called for " << value << endl;
+          }
+
+          // Move operator
+          Test2& operator=(Test2&& rhs) noexcept{
+              cout << "Move assignment called" << endl;
+              if(this != &rhs){
+                  delete data;
+                  data = rhs.data;
+                  rhs.data = nullptr;
+              }
+              return *this;
+          }
+
+          // Destructor
+          ~Test() {
+              delete data; // Deallocate dynamically allocated memory
+              cout << "Destructor called \n";
+          }
+
+          // Print method
+          void print() const {
+            if(data != nullptr){
+            cout << "Data: " << *data << std::endl;
+            }else{
+              cout << "Data does not exists\n";
+            }
+          }
+      };
+
+    int main(){
+      Test2 obj1(10);
+      Test2 obj2(0);
+      cout << "\nBefore move assignment\n";
+      obj1.print();
+      obj2.print();
+
+      obj2 = move(obj1);
+      cout << "\nAfter move assignment\n";
+      obj1.print();
+      obj2.print();
+
+      return 0;
+    }
+    ```
+
+#### Summary of the copy and moving syntax
+|Special Member Function|For Class X|
+|---|--|
+|Copy constructor|`X(const X&);`|
+|Copy assignment|`X& operator=(const X&);`|
+|Move constructor (C++ 11)|`X(const X&&);`|
+|Move assignment (C++ 11)|`X& operator=(const X&&);`|
 ---
 ## Overloading 
+### > Function Overloading
 - same function name but different parameters lists
 ```cpp
 int getMax(int x, int y){
@@ -831,8 +1118,50 @@ void calculation(double num = 0.1);
 int getMax(int x, int y);
 double getMax(int x, int y);
 ```
-
-[Copy constructor](./Object_Oriented_Programming/main.cpp)
+### > Operator Overloading
+- allow us to define operator for our own abstract data types
+- Things to be aware
+    1. Properties of the operator which cannot be change:
+     -if an operator is normally defined to be unary only, then we cannot overload it to binary 
+         - unary -> require single operand, 
+         - binary -> require double operand
+    2. operator that cannot be overloaded
+        - dot operator (`.`)
+        - pointer operator (`*`)
+        - scope resolution operator (`::`)
+        - conditional operator (`?:`)
+        - function `sizeof()`
+    3. cannot overload symbols which are not predifined operator
+    4. Operators cannot be overloaded for the basic C++ types.
+### > Ways to define operator overloading:
+  1. member functions
+     1. A function that overload =, (), [] or -> for a class must be a member function for this class.
+      2. Function prototype: 
+      ```cpp
+      ClassName operatorSymbol (const ClassName&) const;
+      ```
+      3. Function definition: 
+      ```cpp
+      ClassName ClassName::operatorsymbol(const ClassName& obj)const
+      {
+        statement;
+      }
+      ```
+      [Example](./Overloading/MemberFunction/)
+  2. friend functions
+     1. if the left operand of the operator is an object of a different class, then a friend function must be defined
+     2. Function prototype: 
+      ```cpp
+      friend ClassName operatorSymbol (const ClassName&, const ClassName&);
+      ```
+      3. Function definition: 
+      ```cpp
+      ClassName operatorsymbol(const ClassName& obj1, const ClassName& obj2)
+      {
+        statement;
+      }
+      ```
+      [Example](./Overloading/FriendFunction/)
 ---
 ## Class/Object Relation
 ### > Subheading
@@ -1020,5 +1349,3 @@ sizeof(int*): 8
 ### > <mark style="background-color:#FFA50035;">`unsigned`</mark> operator
 - the variables that declare as `unsigned` will only store values that is greater than or equal to 0
 - if not, the compiler will still compile it but a  gibberish number will be passed to cout
-
-### > <mark style="background-color:#FFA50035;">`friend`</mark> operator

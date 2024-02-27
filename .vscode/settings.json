@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "C:/Users/benso/vscode project/CPP/Notes"
+    "cmake.sourceDirectory": "C:/Users/benso/vscode project/CPP/Notes",
+    "files.associations": {
+        "new": "cpp"
+    }
 }
