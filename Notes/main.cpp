@@ -29,13 +29,20 @@ int performOperation(int (* operationPtr) (int, int), int a, int b){
 struct Test{
     static const int aStaticInt = 5;
     static const double aStaticDouble;
-    static const string aStaticString = "Hello world";
+    // static const string aStaticString = "Hello world";
 };
 
-const double Test::aStaticDouble = 0.5;
+class Test2{
+public:
+    string name;
+    Test2(){cout << "Default constructor called" << endl;};
+    Test2(string name) : name(name){cout << "Constructing Test2 " << name << endl;}; 
+    ~Test2(){cout << "Desctructor called " << name << endl;};
+};
+
+
+
+const double Test::aStaticDouble = 5.0;
 int main(){
-    Test test;
-    cout << test.aStaticInt << endl << test.aStaticDouble << endl;
-    
     return 0;
 }

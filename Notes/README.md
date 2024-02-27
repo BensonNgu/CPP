@@ -709,15 +709,15 @@ int main(){
 - **Mutator functions (implementors/ setter)**
   - functions that change an object's attributes value
   - e.g. setName(), setAge()
-- Auxiliary functions (facilitators)
+- **Auxiliary functions (facilitators)**
   - function that perfom actions or services
   - e.g. sortAscending(), findLowestValue()
-- Object Management functions 
+- **Object Management functions**
   - constructor 
     - create object
   - destructor
     - destroy object
-
+> However, in this part we only focus on Object management functions 
 ### > Object Management
 #### Constructor
 - called automatically
@@ -727,10 +727,112 @@ int main(){
   - default (no arguments)
   - non-default (at least one argument)
 #### Desctructor
+- similar to constructor function but with the leading tilde`~` 
 - called for an object whenever the object goes out of scope
+- no parameter and no return type
+- allow memory to be release
+- avoiding memory leak
+-----------------------**Example 1: Without Desctructor**-----------------------
+```cpp
+#include <iostream>
+
+class MyClass {
+public:
+    MyClass() {
+        std::cout << "Constructor called\n";
+    }
+};
+
+int main() {
+    MyClass* objPtr = new MyClass();
+    delete objPtr; // Memory deallocation
+    return 0;
+}
+```
+Output :
+```shell
+Constructor called
+```
+-----------------------**Example 2: With Desctructor**-----------------------
+```cpp
+#include <iostream>
+
+class MyClass {
+public:
+    MyClass() {
+        std::cout << "Constructor called\n";
+    }
+    
+    ~MyClass() {
+        std::cout << "Destructor called\n";
+    }
+};
+
+int main() {
+    MyClass* objPtr = new MyClass();
+    delete objPtr; // Memory deallocation
+    return 0;
+}
+```
+Output :
+```shell
+Constructor called
+Destructor called
+```
+#### Question time: 
+1. since both of them have to delete the pointer object when we exit the program, why we still need the descturctor?
+   1. **Resource Management**
+     - If ==the class holds any dynamically allocated memory or external resources== (like file handles or network connections), the destructor provides a convenient place to release those resources, ensuring that no memory leaks or resource leaks occur.
+    2. **Custom Cleanup Logic**
+      - A destructor allows you to define custom cleanup logic specific to your class. 
+      - For example, you may need to close files, release locks, or log information before the object is destroyed.
+    3. **Guaranteed Cleanup**
+      - By explicitly defining a destructor, you ensure that cleanup operations are performed even if exceptions occur during the lifetime of the object. 
+      - This helps maintain program correctness and prevents resource leaks.
+    4. **Class Invariants**
+      - Destructors can be used to enforce class invariants or state consistency. 
+      - They ensure that the object is left in a valid state when it is destroyed, which can be important for maintaining program integrity.
+    5. **Clearer Code Intent**
+      - Explicitly defining a destructor communicates the intent of the class more clearly to other developers. 
+      - It indicates that resource cleanup is an essential part of the class's functionality.
+2. Can constructor be private
+   - Yes
+   - Reason to make it private:
+      1. we may create an object with certain values only under conditions controlled from within an object 
+      2. Can be used in the context of [inheritance](#inheritance)
+### > 
 ---
 ## Overloading 
-### > Subheading
+- same function name but different parameters lists
+```cpp
+int getMax(int x, int y){
+  if(x > y)return x;
+  else return y;
+}
+char getMax(double x, double y){
+  if(x > y)return x;
+  else return y;
+}
+```
+> The definition/logic of the function supposed to be different
+> If there are the same, we can just used the [function template](#function-template)
+### > Problem with the overloading
+-----------------------**Example 1**-----------------------
+- Providing the default values for the fucntion arguments while the return type are the same
+- This make the compiler to confuse, which function should be called
+```cpp
+void calculation(int num = 1);
+void calculation(double num = 0.1);
+```
+-----------------------**Example 2**-----------------------
+- different return type but providing the same function argument list
+- make the compiler to confuse, which function should be called since both the argument list are the same
+```cpp
+int getMax(int x, int y);
+double getMax(int x, int y);
+```
+
+[Copy constructor](./Object_Oriented_Programming/main.cpp)
 ---
 ## Class/Object Relation
 ### > Subheading
