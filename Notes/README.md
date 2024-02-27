@@ -1,7 +1,7 @@
 # Notes for CPP
 |Content|Section|
 |---|---|
-|[<kbd>Procedural-Programming</kbd>](#procedural-programming)|[<kbd>Why is it useful?</kbd>](#why-is-it-useful)|
+|[<kbd>Procedural-Programming</kbd>](#procedural-programming)|[<kbd>Why is it useful?</kbd>](##why-is-it-useful)|
 |[<kbd>Memory and Pointer</kbd>](#memory-and-pointer)|[<kbd>Pointing to memory</kbd>](#pointing-to-memory)<br>[<kbd>Referencing</kbd>](#referencing)<br>[<kbd>Pass by reference</kbd>](#pass-by-reference)<br>[<kbd>Pointers</kbd>](#pointers)<br>[<kbd>Summary</kbd>](#summary-of--and--operators)|
 |[<kbd>Array</kbd>](#arrays)|[<kbd>Arrays and Pointers</kbd>](#arrays-and-pointers)|
 |[<kbd>Function Pointer</kbd>](#function-pointer)||
