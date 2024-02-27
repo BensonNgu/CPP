@@ -2,7 +2,7 @@
 |Content|Section|
 |---|---|
 |[<kbd>Procedural-Programming</kbd>](#procedural-programming)|[<kbd>Why is it useful?</kbd>](README.md#-why-is-it-useful)|
-|[<kbd>Memory and Pointer</kbd>](#memory-and-pointer)|[<kbd>Pointing to memory</kbd>](#pointing-to-memory)<br>[<kbd>Referencing</kbd>](#referencing)<br>[<kbd>Pass by reference</kbd>](#pass-by-reference)<br>[<kbd>Pointers</kbd>](#pointers)<br>[<kbd>Summary</kbd>](#summary-of--and--operators)|
+|[<kbd>Memory and Pointer</kbd>](#memory-and-pointer)|[<kbd>Pointing to memory</kbd>](README.md#-pointing-to-memory)<br>[<kbd>Referencing</kbd>](README.md#-referencing)<br>[<kbd>Pass by reference</kbd>](README.md#-pass-by-reference)<br>[<kbd>Pointers</kbd>](README.md#-pointers)<br>[<kbd>Summary</kbd>](README.md#-summary-of--and--operators)|
 |[<kbd>Array</kbd>](#arrays)|[<kbd>Arrays and Pointers</kbd>](#arrays-and-pointers)|
 |[<kbd>Function Pointer</kbd>](#function-pointer)||
 |[<kbd>Constructor and Destructor</kbd>](#constructors-and-desctructors)|[<kbd>Type of Member Functions</kbd>](#types-of-member-functions)<br>[<kbd>Object Management</kbd>](#object-management)<br>[<kbd></kbd>]()|
