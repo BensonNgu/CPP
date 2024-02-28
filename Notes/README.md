@@ -702,6 +702,74 @@ int main(){
   }
   ```
 ---
+## Randomness 
+### > old school version
+```cpp
+#include <iostream>
+using namespace std;
+
+int main(){
+  srand(time(0));
+
+  for(int i = 0; i > 20; i++){
+    cout << rand() << endl;
+  }
+
+  return 0;
+}
+```
+- Limitation
+  - cannot get different range
+  - only get integer
+  - uniform distribution   
+### > C++11 version 
+```cpp
+#include <random>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(){
+  default_random_engine randEng;
+  for(int i = 0; i < 10; i++){
+    cout << randEng() << endl;
+  }
+}
+```
+Output: 
+```cpp
+16807
+282475249
+1622650073
+984943658
+1144108930
+470211272
+101027544
+1457850878
+1458777923
+2007237709
+```
+- get the min and max of the random
+```cpp
+default_random_engine randEng;
+cout << "min: " << randEng.min() << endl;
+cout << "max: " << randEng.max() << endl;
+```
+Output : 
+```cpp
+min: 1
+max: 2147483646
+```
+- To adjust the seed
+  ```cpp
+  // adjust seed at the constructor (the seed must be integral seed)
+  int seed = 6;
+  default_random_engine randEng(seed);
+
+  // or set it later
+  ```
+---
 ## Class and UML
 ### > What is a class
 - user defined data type
