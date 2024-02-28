@@ -164,6 +164,7 @@ cout << value << endl;
 ### > Intro
 - collections of variables of the same type and fixed size
 - Ways to initialize an array
+
   ```c++
   // array with a fixed length and memory location is set up but no initialization
   const int postCodeLength = 4;
