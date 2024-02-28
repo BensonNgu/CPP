@@ -711,63 +711,556 @@ using namespace std;
 int main(){
   srand(time(0));
 
-  for(int i = 0; i > 20; i++){
+  for(int i = 0; i <> 20; i++){
     cout << rand() << endl;
   }
 
   return 0;
 }
 ```
+Output :
+```shell
+21486
+1521
+22594
+20851
+23005
+22362
+680
+7584
+7550
+30017
+19157
+19124
+17332
+16270
+25951
+32253
+21344
+32046
+10965
+26081
+```
 - Limitation
   - cannot get different range
   - only get integer
   - uniform distribution   
 ### > C++11 version 
-```cpp
-#include <random>
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-int main(){
-  default_random_engine randEng;
-  for(int i = 0; i < 10; i++){
-    cout << randEng() << endl;
+- the output is fixed
+- can provided integral seed
+- can set the range to uniform range
+- can set the range to normal distribution
+- **Basic random declaration**
+  ```cpp
+  #include <random>
+  #include <iostream>
+  #include <string>
+  
+  using namespace std;
+  
+  int main(){
+    default_random_engine randEng;
+    for(int i = 0; i < 10; i++){
+      cout << randEng() << endl;
+    }
   }
-}
-```
-Output: 
-```cpp
-16807
-282475249
-1622650073
-984943658
-1144108930
-470211272
-101027544
-1457850878
-1458777923
-2007237709
-```
-- get the min and max of the random
-```cpp
-default_random_engine randEng;
-cout << "min: " << randEng.min() << endl;
-cout << "max: " << randEng.max() << endl;
-```
-Output : 
-```cpp
-min: 1
-max: 2147483646
-```
-- To adjust the seed
+  ```
+  Output: 
+  ```shell
+  16807
+  282475249
+  1622650073
+  984943658
+  1144108930
+  470211272
+  101027544
+  1457850878
+  1458777923
+  2007237709
+  ```
+- **get the min and max of the random**
+  ```cpp
+  default_random_engine randEng;
+  cout << "min: " << randEng.min() << endl;
+  cout << "max: " << randEng.max() << endl;
+  ```
+  Output : 
+  ```shell
+  min: 1
+  max: 2147483646
+  ```
+- **To adjust the seed**
   ```cpp
   // adjust seed at the constructor (the seed must be integral seed)
   int seed = 6;
   default_random_engine randEng(seed);
 
   // or set it later
+  default_random_engine randEng;
+  randEng.seed(seed)
+  ```
+- get the uniform random number in a range
+  ```cpp
+  uniform_int_distribution<unsigned> uniform(0,100);
+  default_random_engine randEng;
+  for(int i = 0; i < 10; i++){
+      cout << uniform(randEng) << endl;
+  } 
+  ```
+  Output :
+  ```shell
+  0
+  13
+  76
+  46
+  53
+  22
+  4
+  68
+  68
+  94
+  ```
+- normal distributon range
+  ```cpp
+  normal_distribution<> normal(6, 2.5);
+  default_random_engine randEng;
+  for(int i = 0; i < 10; i++){
+    cout << normal(randEng) << endl;
+  } 
+  ``` 
+  Output :
+  ```shell
+  5.69509
+  3.28295
+  7.71072
+  3.31203
+  6.08317
+  7.86209
+  6.08402
+  4.68341
+  7.15633
+  6.50175
+  ```
+  > if you wish to round it to the nearest integer, then you need to use `lround()`
+---
+## Exception
+### > Intro
+- exception
+  - unusual occurance
+  - error occur during oop execution
+  - object that contains information that is passed from the plac ewhere a problem occurs to another place that will handle the problem 
+    - can be any type (including basic or class type)
+- exception handling
+    - oop technique
+    - manage such errors, although it doesn't just work with object around
+- syntax 
+  ```cpp
+  try{
+    // statement that may throw an exception
+  }catch( ){
+    // handle you exception here
+  }
+  ```
+- how to `throw` an exception
+  ```cpp
+  // throw string exception
+  void testDate(int day, int month, int year){
+    if(day < 1 ||  day > 31){
+      throw (string("Invalid day"));
+    }
+    if(month < 1 || month > 12){
+      throw (string("Invalid month"));
+    }
+    cout << "The day and month is valid: " << day << "-" << month << "-" << year << endl;
+  }
+
+  // throw int exception
+  void verifyEmail(string email){
+    int loc1, loc2;
+    string at = "@";
+    string dot = ".";
+    loc1 = email.find(at);
+    loc2 = email.rfind(dot);
+    if(loc1 == string::npos){
+      throw (1);
+    }else{
+      cout << at << " found at " << loc1 << endl;
+    }
+    if(loc2 == string::npos){
+      throw (2);
+    }else{
+      cout << dot << " found at " << loc2 << endl;
+    }
+    if(loc1 >= loc2){
+      throw (3);
+    }
+    cout << "Email is valid: " << email << endl;
+  }
+  ```
+- after you `throw` the exception, you must `catch` it
+  ```cpp
+  int main(){
+    string email = "email@example.com";
+    try{
+      testDate(31, 12, 1990);
+      verifyEmail(email);
+    }catch(string e){       // catch string exception
+      cout << "Exception caught: " << e << endl;
+    }catch(int i){        // catch int exception
+      if(i == 1) 
+        cout << "error 1: No @ in email" << endl;
+      else if(i == 2) 
+        cout << "error 2: Not . in email" << endl;
+      else if(i == 3) 
+        cout << "error 3: @ before ." << endl;
+      else
+        cout << "Something wrong." << endl;
+    }
+    return 0;
+  }
+  ```
+
+### > Unwinding the stack
+- When calling a function, the address where the logic should return at the end of the function is stored in a memory location, AKA ==Stack==.
+- Story time:
+  - Scenario:
+    ```cpp
+    void FunctionC() {
+        // This function might throw an exception
+      if (/* some condition */) {
+        throw SomeException();
+      }
+    }
+
+    void FunctionB() {
+      try {
+        FunctionC();
+      } catch (const SomeException& e) {
+        // Handle the exception or rethrow
+        throw; // Rethrow the exception
+      }
+    }
+
+    void FunctionA() {
+      try {
+        FunctionB();
+      } catch (const SomeException& e) {
+        // Handle the exception
+        std::cerr << "Exception caught in FunctionA: " << e.what() << std::endl;
+      }
+    }
+
+    ```
+  - Function A will call Function B, and Function B will call Function C.
+  - At some condition, Function C throws an exception. But there is no try catch block within Function C that will handle the exception. Thus the runtime unwinds that stack.
+  - The runtime moves up the call stack to the calling function B, which a try catch block found matched the type of exception thrown by Function C.
+  - However, sometime the exception handler which we defined may not able to handle the exception. Thus the exception can be ==rethrown==
+  - If exception is rethrown in Function B, then the runtime will rewind the stack again until it find a try catch block which use to handle thi s exception. 
+  - If the exception is not caught in the end of the stack, the program may terminated. 
+---
+## Namespace
+### > Intro
+- optinal scope
+- help limit the concern about the naming clashes 冲突
+- to avoid name duplication
+- syntax for delaring
+  ```cpp
+  namespace name_of_namespace{
+    // declaration here
+  }
+  ```
+- syntax of accesing
+  ```cpp
+  name_of_namespace::function_name();
+  name_of_namespace::variable_name;
+
+  // btw you can bring the namespace into scope using `using` keyword
+  using namespace name_of_namespace;
+  // after bringing namespace into scope
+  function_name();
+  variable_name;
+  ```
+-----------------------**Example 1**-----------------------
+```cpp
+#include <iostream>
+using namespace std;
+
+namespace NS{
+  int i;
+}
+
+namespace NS{
+  int j;
+}
+
+int main(){
+  NS::i = NS::j = 10;
+  cout << NS::i * NS::j << endl;
+
+  using namespace NS;
+  cout << i * j << endl;
+  return 0;
+}
+```
+Output : 
+```shell
+100
+100
+```
+
+-----------------------**Example 2 : Name Clashes**-----------------------
+***counter.h***
+```cpp
+#ifndef _COUNTER_H_
+#define _COUNTER_H_
+// global variable within the counter.h
+int upperbound;
+int lowerbound;
+class counter {
+    public:
+        counter(int n) {
+                if(n<=upperbound) count = n;
+                else count = upperbound;
+        }
+        void reset(int n){
+                if(n<=upperbound) count=n;
+        }
+        int run() {
+                if(count > lowerbound) return count--;
+                else return lowerbound;
+        }
+    private:
+    // local variable in this class 
+        int count;
+};
+#endif
+```
+***delay.h***
+```cpp
+#ifndef _DELAY_H_
+#define _DELAY_H_
+// global variable within the delay.h
+int upperbound;
+int lowerbound;
+class delay {
+   private:
+   // local variable within the class
+       int count;
+
+   public:
+        delay(int n) {
+                if(n<=upperbound) count = n;
+                else count = upperbound;
+        }
+        void reset(int n){
+                if(n<=upperbound) count=n;
+        }
+        int run() {
+                if(count > lowerbound) return count--;
+                else return lowerbound;
+        }
+};
+#endif
+```
+***main.cpp***
+```cpp
+#include <iostream>
+#include "counter.h"
+#include "delay.h"      
+using namespace std;
+
+int main(){
+  return 0;
+}
+```
+In the time of compiling:
+```shell
+In file included from main.cpp:3:
+delay.h:4:5: error: redefinition of 'int upperbound'
+    4 | int upperbound;
+      |     ^~~~~~~~~~
+In file included from main.cpp:2:
+counter.h:4:5: note: 'int upperbound' previously declared here
+    4 | int upperbound;
+      |     ^~~~~~~~~~
+delay.h:5:5: error: redefinition of 'int lowerbound'
+    5 | int lowerbound;
+      |     ^~~~~~~~~~
+counter.h:5:5: note: 'int lowerbound' previously declared here
+    5 | int lowerbound;
+      |     ^~~~~~~~~~
+```
+![name_clashes.png](./img/name_clahes.png)
+***To avoid this***
+***delay.h***
+```cpp
+#ifndef _DELAY_H_
+#define _DELAY_H_
+// global variable within the delay.h
+namespace NS_Delay{
+  int upperbound;
+  int lowerbound;
+  class delay {
+  private:
+    // local variable within the class
+    int count;
+  public:
+    delay(int n) {
+      if(n<=upperbound) count = n;
+      else count = upperbound;
+    }
+    void reset(int n){
+      if(n<=upperbound) count=n;
+    }
+    int run() {
+      if(count > lowerbound) return count--;
+      else return lowerbound;
+    }
+  };
+}
+#endif
+```
+***main.cpp***
+```cpp
+#include <iostream>
+#include "counter.h"
+#include "delay.h"      
+using namespace std;
+
+int main(){
+  // defined in counter.h
+  upperbound = 5000l
+  lowerbound = 1;
+  counter c1(10);
+
+//  defined in delay.h -> namesace: NS_Delay
+  NS_Delay::upperbound = 100;
+  NS_Delay::lowerbound = 20;
+  NS_Delay::delay s1(30);
+  return 0;
+}
+```
+Question time:
+Given `date::year`, what is date? Class? Namespace?
+[Answer](./Namespace/answer.md) 
+
+### > Use namespace locally
+```cpp
+#include<iostream>
+
+void func1() 
+{
+    using namespace std;      // the namespace std is only use in func1
+    cout << "This is func1" << endl;
+}
+
+void func2() 
+{
+    std::cout << "This is func2" << std::endl;
+}
+
+int main() 
+{
+    func1();		
+    func2();
+    std::cout << "This is Main" << std::endl;
+    return 0;   
+}
+```
+### > Unamed Namespace
+- AKA anonymous namespace
+- allow us to establish unique identifier
+- known only within the scope of a single file
+- [encapsulation](Readme.md#-encapsulation) 
+- syntax
+```cpp
+namespace{
+  // declaration
+}
+```
+### > Nested Namespace
+```CPP
+namespace ITDept{
+  namespace DBDept{
+    class UserAccount{...}
+  }
+  namespace GUIDept{
+    class UserAccount{...}
+  }
+  namespace AIDept{
+    class UserAccount{...}
+  }
+}
+
+int main(){
+  using namespace ITDept;
+  DBDept::UserAccount user1;
+  GUIDept::UserAccount user2;
+  AIDept::UserAccount user3;
+  return 0;
+}
+```
+**Why do we use nested namespace:**
+
+1. **Organization**
+   - Nested namespaces help organize related code into logical groups, making large codebases more manageable.
+   - e.g. ITDept can manage many department such as DBDept, GUIDept and AIDept.
+
+2. **Avoiding Collisions**
+   - They prevent naming conflicts by allowing common names to be used in different contexts without conflict.
+   - e.g. `DBDept::UserAccount user1;` & `GUIDept::UserAccount user2;`
+
+3. **Encapsulation**
+   - Nested namespaces facilitate encapsulation and information hiding by controlling access to code within different levels of the namespace hierarchy.
+
+4. **Library Design**
+   - They provide a clear and intuitive interface for libraries or frameworks, guiding users to find the features they need easily.
+
+5. **Versioning**
+   - Nested namespaces support namespace evolution and versioning, ==allowing for backward compatibility== and easier management of changes over time.
+
+
+### > Inline namesoace
+***Before using inline namespaces***
+```cpp
+namespace myLib{
+  #include "FifthEd.h"      // contain additional functions that ForthEd.h do nnot provide
+  #include "FourthEd.h"
+}
+```
+***After using inline namespaces***
+```cpp
+namespace myLib{
+  #include "FortranEd.h"      // the user still can use the previous version function
+  inline namespace FifthEd{
+    // implement new function
+  }
+}
+```
+### > Namespace alias
+- suppose we have the following
+  ```cpp
+  namespace University_of_Wollongong 
+  {
+    int student();
+    namespace Nest_SCIT; 
+    {
+      void a() { j++; }
+      int j;
+      void b() { j++; } 
+    }
+  }
+  // by applyying alias 
+  // to normal namespace
+  namespace UOW = University_of_Wollongong;
+  // to nested namespace
+  namespace SCIT = University_of_Wollongong::Nest_SCIT;
+  
+  int main(){
+    cout << UOW::student() << endl;
+    SCIT::a;
+    cout << SCIT::j << endl;
+  }
   ```
 ---
 ## Class and UML
@@ -776,6 +1269,66 @@ max: 2147483646
 - provide ==description== for the building type
 - provide ==prototype(blueprint)== for objects
 - provide ==convenient way to group related data== and the ==function which are used to process the data==
+- Abstract data type > a type that we define
+### > Access Specifier/Modifier
+1.  public
+    - directly access from outside of the object 
+2.  private
+    - can only be directly access by the internal methods 
+3.  protected
+    - can be directly access by the subclasses, but not the arbitary external objects
+### > Encapsulation
+- encapsulate component = hide them in a container
+- implement it using `private`
+- why?
+  - a variable may have limited range
+  - a variable may require specific output
+### > Static
+- to avoid data replication and it is shared between instance of the same class
+- Field
+  - Class attribute/ variable
+    - To define a shared data for the class intances
+  - Class methods
+    - to define behaviour of classes that may not be associated with an instance
+    - can use to acccess static variaable
+  - Instance attributes/variables
+  - Instance methods
+### > `this` pointer
+- It is automatically supplied when we call a non-static member function of a class
+- e.g. `clerk.displayValues();`
+  - actual: `displayValues(&clerk);` 
+  - the argument list used by the compiiler: `displayValues(Employee *this)`
+- However, we can still use `this` pointer explicitly
+  ```cpp
+  void Employee::displayValues(){
+    cout << "Employee #"<< (*this).employeeNum << "Company #" << (*this).companyIdNum << endl;
+  }
+  ```
+- But this is ridiculous as the parenthesis is required to dereference the `this` pointer
+- ==Pointer-to-Member== Operator is coming to solve this problem
+  ```cpp
+  void Employee::displayValues(){
+    cout << "Employee #"<< this->employeeNum << "Company #" << this->companyIdNum << endl;
+  }
+  ```
+- Another reason of using Pointer-to-Member operator (to differentiate the class field and a local variable)
+  ```cpp
+  void setName(string name){
+    this->name = name;
+  }
+  ```
+### > UML
+- provides an unambiguous mechanism to describe technical systems.
+- Three basic model
+  - Functional View
+    - what should the system do
+    - e,g, Use cases, use case diagrams
+  - Structural View
+    - how must the system be implemented
+    - e.g. class diagram, object diagram
+  - Behavioural View
+    - how does the system operate
+    - interaction diagram, state diagram
 ---
 ## Constructors and Desctructors
 ### > Types of Member Functions

@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <string.h>
+#include <random>
 // #include "class_declaration.h"
 
 using namespace std;
@@ -31,6 +32,7 @@ struct Test{
     static const double aStaticDouble;
     // static const string aStaticString = "Hello world";
 };
+const double Test::aStaticDouble = 5.0;
 
 class Test2{
 public:
@@ -56,11 +58,56 @@ void release(Example* ex){
 }
 
 
+// exception handling
+// throwing string as an argument
+void testDate(int day, int month, int year){
+    if(day < 1 ||  day > 31){
+        throw (string("Invalid day"));
+    }
+    if(month < 1 || month > 12){
+        throw (string("Invalid month"));
+    }
+    cout << "The day and month is valid: " << day << "-" << month << "-" << year << endl;
+}
 
-const double Test::aStaticDouble = 5.0;
+// throwing integer as argument
+void verifyEmail(string email){
+    int loc1, loc2;
+    string at = "@";
+    string dot = ".";
+    loc1 = email.find(at);
+    loc2 = email.rfind(dot);
+    if(loc1 == string::npos){
+        throw (1);
+    }else{
+        cout << at << " found at " << loc1 << endl;
+    }
+    if(loc2 == string::npos){
+        throw (2);
+    }else{
+        cout << dot << " found at " << loc2 << endl;
+    }
+    if(loc1 >= loc2){
+        throw (3);
+    }
+
+    cout << "Email is valid: " << email << endl;
+}
+
+namespace NS{
+    int i;
+}
+
+namespace NS{
+    int j;
+}
+
 int main(){
-    cout << "Hello world" << endl;
-    Example *ex = new Example();
-    release(ex);
+    NS::i = NS::j = 10;
+    cout << NS::i * NS::j << endl;
+
+    using namespace NS;
+    cout << i * j << endl;
+
     return 0;
 }
