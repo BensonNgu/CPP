@@ -1,13 +1,106 @@
 # Notes for CPP
-|Content|Section|
-|---|---|
-|[<kbd>Procedural-Programming</kbd>](#procedural-programming)|[<kbd>Why is it useful?</kbd>](README.md#-why-is-it-useful)|
-|[<kbd>Memory and Pointer</kbd>](#memory-and-pointer)|[<kbd>Pointing to memory</kbd>](README.md#-pointing-to-memory)<br>[<kbd>Referencing</kbd>](README.md#-referencing)<br>[<kbd>Pass by reference</kbd>](README.md#-pass-by-reference)<br>[<kbd>Pointers</kbd>](README.md#-pointers)<br>[<kbd>Summary</kbd>](README.md#-summary-of--and--operators)|
-|[<kbd>Array</kbd>](#arrays)|[<kbd>Arrays and Pointers</kbd>](README.md#-arrays-and-pointers)|
-|[<kbd>Function Pointer</kbd>](#function-pointer)||
-|[<kbd>Constructor and Destructor</kbd>](#constructors-and-desctructors)|[<kbd>Type of Member Functions</kbd>](README.md#-types-of-member-functions)<br>[<kbd>Object Management</kbd>](README.md#-object-management)<br>[<kbd></kbd>]()|
-|[<kbd>Special Keyword</kbd>](#special-keyword)|[<kbd>`void*` (void pointer)</kbd>](README.md#-void-void-pointer) <br>[<kbd>`typedef`</kbd>](README.md#-typedef)<br>[<kbd>`auto`</kbd>](README.md#-auto)<br>[<kbd>`nullptr` (Null Pointer)</kbd>](README.md#-nullptr-null-pointer)<br>[<kbd>const vs constextr</kbd>](README.md#-const-vs-constextr)<br>[<kbd>`sizeof` operator)</kbd>](README.md#-sizeof-operator)| 
-
+<details>
+  <summary>Table of content</summary>
+  
+- [Notes for CPP](#notes-for-cpp)
+  - [Procedural Programming](#procedural-programming)
+    - [\> Why is it useful](#-why-is-it-useful)
+  - [Memory and Pointer](#memory-and-pointer)
+    - [\> Pointing to memory](#-pointing-to-memory)
+    - [\> Referencing](#-referencing)
+    - [\> Pass by reference](#-pass-by-reference)
+    - [\> Pointers](#-pointers)
+      - [\>\> How to use pointers](#-how-to-use-pointers)
+    - [\> Summary of `&` and `*` operators](#-summary-of--and--operators)
+  - [Arrays](#arrays)
+    - [\> Intro](#-intro)
+      - [\> Character Array](#-character-array)
+    - [\> Arrays and Pointers](#-arrays-and-pointers)
+  - [Function pointer](#function-pointer)
+  - [Control Structures and Repetition statement](#control-structures-and-repetition-statement)
+    - [\> Control Structures](#-control-structures)
+      - [==if==](#if)
+      - [==if-else==](#if-else)
+      - [==Compound boolean expressions==](#compound-boolean-expressions)
+      - [==Switch==](#switch)
+    - [\> Repetition statement](#-repetition-statement)
+      - [While loop](#while-loop)
+      - [For loop](#for-loop)
+  - [Dynamic Memory allocation](#dynamic-memory-allocation)
+    - [\> Stack or Heap](#-stack-or-heap)
+    - [`new` \& `delete`](#new--delete)
+    - [`new[]`](#new)
+    - [Notes for `delete[]`](#notes-for-delete)
+  - [Abstract data types](#abstract-data-types)
+    - [\> Structs](#-structs)
+      - [static const in struct](#static-const-in-struct)
+    - [\> Unions](#-unions)
+  - [Randomness](#randomness)
+    - [\> old school version](#-old-school-version)
+    - [\> C++11 version](#-c11-version)
+  - [Exception](#exception)
+    - [\> Intro](#-intro-1)
+    - [\> Unwinding the stack](#-unwinding-the-stack)
+  - [Namespace](#namespace)
+    - [\> Intro](#-intro-2)
+    - [\> Use namespace locally](#-use-namespace-locally)
+    - [\> Unamed Namespace](#-unamed-namespace)
+    - [\> Nested Namespace](#-nested-namespace)
+    - [\> Inline namesoace](#-inline-namesoace)
+    - [\> Namespace alias](#-namespace-alias)
+  - [Class and UML](#class-and-uml)
+    - [\> What is a class](#-what-is-a-class)
+    - [\> Access Specifier/Modifier](#-access-specifiermodifier)
+    - [\> Encapsulation](#-encapsulation)
+    - [\> Static](#-static)
+    - [\> `this` pointer](#-this-pointer)
+    - [\> UML](#-uml)
+  - [Constructors and Desctructors](#constructors-and-desctructors)
+    - [\> Types of Member Functions](#-types-of-member-functions)
+    - [\> Object Management](#-object-management)
+      - [Constructor](#constructor)
+      - [Desctructor](#desctructor)
+      - [Question time:](#question-time)
+    - [\> Copy And Moving](#-copy-and-moving)
+      - [Copy](#copy)
+        - [\> Summary for copy contructor and copy assignment](#-summary-for-copy-contructor-and-copy-assignment)
+      - [Moving](#moving)
+      - [Summary of the copy and moving syntax](#summary-of-the-copy-and-moving-syntax)
+  - [|Move assignment (C++ 11)|`X& operator=(const X&&);`|](#move-assignment-c-11x-operatorconst-x)
+  - [Overloading](#overloading)
+    - [\> Function Overloading](#-function-overloading)
+    - [\> Problem with the overloading](#-problem-with-the-overloading)
+    - [\> Operator Overloading](#-operator-overloading)
+    - [\> Ways to define operator overloading:](#-ways-to-define-operator-overloading)
+  - [Class/Object Relation](#classobject-relation)
+    - [\> Dependency](#-dependency)
+    - [\> Association](#-association)
+    - [\> Aggreagation](#-aggreagation)
+    - [\> Cmposition](#-cmposition)
+    - [\> Generalisation](#-generalisation)
+  - [Polymorphism and Multiple inheritance](#polymorphism-and-multiple-inheritance)
+    - [\> Subheading](#-subheading)
+  - [Handling files](#handling-files)
+    - [\> Subheading](#-subheading-1)
+  - [Heading](#heading)
+    - [\> Subheading](#-subheading-2)
+  - [Special Keyword](#special-keyword)
+    - [\> `void*` (void pointer)](#-void-void-pointer)
+    - [\> `typedef`](#-typedef)
+    - [\> `auto`](#-auto)
+      - [Purpose 1 (the type name is hard to know or hard to write)](#purpose-1-the-type-name-is-hard-to-know-or-hard-to-write)
+      - [Purpose 2 (grab the return type from an operation)](#purpose-2-grab-the-return-type-from-an-operation)
+      - [Purpose 3 (use in for loop which can receive different sequence type but the same format)](#purpose-3-use-in-for-loop-which-can-receive-different-sequence-type-but-the-same-format)
+      - [Purpose 4 (referencing)](#purpose-4-referencing)
+      - [Things to be aware (Referencing, `const`, `auto`)](#things-to-be-aware-referencing-const-auto)
+    - [\> `decltype`](#-decltype)
+    - [\> `nullptr` (Null Pointer)](#-nullptr-null-pointer)
+    - [\> `const` vs `constextr`](#-const-vs-constextr)
+      - [Summary](#summary)
+    - [\> `sizeof` operator](#-sizeof-operator)
+    - [\> `unsigned` operator](#-unsigned-operator)
+    - [\> `friend`](#-friend)
+</details>
 
 ## Procedural Programming
 - Procedures, AKA routines, subroutines and functions
@@ -1855,7 +1948,47 @@ double getMax(int x, int y);
 
 ---
 ## Class/Object Relation
-### > Subheading
+### > Dependency
+- a class is using another class or is depending on another class
+```mermaid
+classDiagram 
+X ..> Y : use/depends on
+Car ..> Engine : start engine
+class Car{
+  - Engine engine
+  + Car()
+  + void start()
+}
+
+class Engine {
+  + void start()
+}
+```
+### > Association
+- a class retain a relationship with another class
+- contain dependency
+- this show that one object is related/communicate with another object
+- 
+```mermaid
+classDiagram
+X --> Y : use/depends on
+
+Library --> Book : have
+class Book{
+  - string title
+  + Book(string t)
+  + getTitle() string
+}
+
+class Library{
+  - vector<Book> books
+  + void addBook(Book book)
+  + void displayBook() 
+}
+```
+### > Aggreagation
+### > Cmposition
+### > Generalisation
 ---
 ## Polymorphism and Multiple inheritance
 ### > Subheading
@@ -1999,9 +2132,9 @@ int main(){
 - object that declared with `const` qualifier cannot change its value
 - object that declared with `constextr` qualifier cannot change its value but can evaluate them in the compile time
 ```c++
-constexpr int square(int x) {
+`constexpr int square(int x) {
     return x * x;
-}
+}`
 
 int main() {
     // Compile-time evaluation of the constexpr function

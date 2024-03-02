@@ -103,11 +103,16 @@ namespace NS{
 }
 
 int main(){
-    NS::i = NS::j = 10;
-    cout << NS::i * NS::j << endl;
+    // NS::i = NS::j = 10;
+    // cout << NS::i * NS::j << endl;
 
-    using namespace NS;
-    cout << i * j << endl;
+    // using namespace NS;
+    // cout << i * j << endl;
+
+    int x = 5;
+    int * ptr;
+    ptr = &x;
+    cout << x << endl << *(ptr);
 
     return 0;
 }

@@ -1,6 +1,8 @@
 #include <iostream>
-#include "counter.h"
-#include "delay.h"
+// #include "counter.h"
+// #include "delay.h"
+// #include "Test.h"
+
 
 using namespace std;
 
@@ -15,14 +17,18 @@ using namespace std;
 //     static int getYear() { return year; }
 // };
 
+class Date{
+private:
+    int year = 2003;
+public:
+    int getYear() { return year; }
+};
 
-namespace date{
-    int year;
-}
 
 
 
 int main() {
+
     return 0;
 }
 
