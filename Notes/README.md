@@ -1,7 +1,7 @@
 # Notes for CPP
 <details>
   <summary>Table of content</summary>
-  
+
 - [Notes for CPP](#notes-for-cpp)
   - [Procedural Programming](#procedural-programming)
     - [\> Why is it useful](#-why-is-it-useful)
@@ -46,7 +46,7 @@
     - [\> Use namespace locally](#-use-namespace-locally)
     - [\> Unamed Namespace](#-unamed-namespace)
     - [\> Nested Namespace](#-nested-namespace)
-    - [\> Inline namesoace](#-inline-namesoace)
+    - [\> Inline namespace](#-inline-namespace)
     - [\> Namespace alias](#-namespace-alias)
   - [Class and UML](#class-and-uml)
     - [\> What is a class](#-what-is-a-class)
@@ -66,17 +66,21 @@
         - [\> Summary for copy contructor and copy assignment](#-summary-for-copy-contructor-and-copy-assignment)
       - [Moving](#moving)
       - [Summary of the copy and moving syntax](#summary-of-the-copy-and-moving-syntax)
-  - [|Move assignment (C++ 11)|`X& operator=(const X&&);`|](#move-assignment-c-11x-operatorconst-x)
   - [Overloading](#overloading)
     - [\> Function Overloading](#-function-overloading)
     - [\> Problem with the overloading](#-problem-with-the-overloading)
     - [\> Operator Overloading](#-operator-overloading)
     - [\> Ways to define operator overloading:](#-ways-to-define-operator-overloading)
   - [Class/Object Relation](#classobject-relation)
+    - [\> Multiplicity](#-multiplicity)
     - [\> Dependency](#-dependency)
     - [\> Association](#-association)
+      - [\> Multiple Association](#-multiple-association)
+      - [\> Labelling Association](#-labelling-association)
+      - [\> Self Association](#-self-association)
     - [\> Aggreagation](#-aggreagation)
-    - [\> Cmposition](#-cmposition)
+    - [\> Association vs Aggregation](#-association-vs-aggregation)
+    - [\> Composition](#-composition)
     - [\> Generalisation](#-generalisation)
   - [Polymorphism and Multiple inheritance](#polymorphism-and-multiple-inheritance)
     - [\> Subheading](#-subheading)
@@ -144,6 +148,11 @@ Step 7: Call Procedure A
 - each typed object is given a location in memory, and values are placed in such objects
 
 - Visuallize the memory location
+  ```cpp
+  int x = 24;
+  string y = "This is a string";
+  // the memory location will be different every time when we restart out program
+  ```
   |Memory location|Values|Type|
   |---|---|---|
   |1008|24|int|
@@ -1313,7 +1322,7 @@ int main(){
    - Nested namespaces support namespace evolution and versioning, ==allowing for backward compatibility== and easier management of changes over time.
 
 
-### > Inline namesoace
+### > Inline namespace
 ***Before using inline namespaces***
 ```cpp
 namespace myLib{
@@ -1806,12 +1815,13 @@ Destructor called
     ```
 
 #### Summary of the copy and moving syntax
-|Special Member Function|For Class X|
-|---|--|
-|Copy constructor|`X(const X&);`|
-|Copy assignment|`X& operator=(const X&);`|
-|Move constructor (C++ 11)|`X(const X&&);`|
-|Move assignment (C++ 11)|`X& operator=(const X&&);`|
+ |Special Member Function|For Class X|
+ |---|--|
+ |Copy constructor|`X(const X&);`|
+ |Copy assignment|`X& operator=(const X&);`|
+ |Move constructor (C++ 11)|`X(const X&&);`|
+ |Move assignment (C++ 11)|`X& operator=(const X&&);`|
+ 
 ---
 ## Overloading 
 ### > Function Overloading
@@ -1948,14 +1958,42 @@ double getMax(int x, int y);
 
 ---
 ## Class/Object Relation
+### > Multiplicity
+```mermaid
+classDiagram
+direction LR
+
+namespace diagram1{
+class X1
+class Y1
+}
+X1 "1" -- "*" Y1
+note for X1 "multiplicity: exactly 1"
+note for Y1 "multilpicity: 0 or more"
+note "X1 can have many(0 or more) of Y1, Y1 can have exactly 1 X1"
+
+```
+```mermaid
+classDiagram
+direction LR
+
+namespace diagram2{
+  class X2
+  class Y2  
+}
+X2 "0..1" -- "1..*" Y2
+note for X2 "multiplicity: optional"
+note for Y2 "multilpicity: one or more"
+note "X2 can have 0 to many of Y2, Y2 can have exactly 1 X2"
+```
 ### > Dependency
+- one directional relaionship
 - a class is using another class or is depending on another class
 ```mermaid
 classDiagram 
 X ..> Y : use/depends on
 Car ..> Engine : start engine
 class Car{
-  - Engine engine
   + Car()
   + void start()
 }
@@ -1964,30 +2002,138 @@ class Engine {
   + void start()
 }
 ```
+*Implementation code*
+```cpp
+class Engine;
+class Car{
+private:
+  ...
+public:
+  void start(Engine *engine)
+  {
+    engine->start();
+  }
+}
+
+class Engine{
+private:
+  ...
+public:
+  ...
+  void start(){
+    ...
+  }
+}
+
+int main(){
+  Car *car1 = new Car();
+  Engine *engine1 = new Engine();
+  car1->start(engine1);
+  return 0;
+}
+```
 ### > Association
 - a class retain a relationship with another class
 - contain dependency
 - this show that one object is related/communicate with another object
-- 
+- "has a" type of relationship
 ```mermaid
 classDiagram
 X --> Y : use/depends on
 
-Library --> Book : have
+Person --> Book : have
 class Book{
   - string title
   + Book(string t)
   + getTitle() string
 }
 
-class Library{
-  - vector<Book> books
-  + void addBook(Book book)
-  + void displayBook() 
+class Person{
+  - Book *book
+  + addBook(Book *book) void
+  + displayBook() void
 }
 ```
+
+#### > Multiple Association
+![multiple_association.png](/Notes//img/multiple_association.png)
+#### > Labelling Association
+![labelling1.png](/Notes/img/labelling1.png)
+> A worker work for many company as employer
+> One company have many worker as contractor to them
+
+![labelling2.png](/Notes/img/labelling2.png)
+> An user is an owner of many directory, but one directory must only have one owner
+> One User can be authorised to access many directories, one directory can be authorised to many user for accessing  
+
+#### > Self Association
+![self_association.png](/Notes//img/self_association.png)
+> A person can own no or more property
+> One property can be own by 1 or more person
+> One person can married to another person as a wife
+> One person can be a husband of another person
+
 ### > Aggreagation
-### > Cmposition
+- stronger association
+- reflects `contains` or `owns` type of relationship
+- parts can be in several composite
+- ==destruction of the container/composite doesn't destroy the parts==
+```mermaid
+classDiagram
+
+class Navy{
+  - int currentInService
+  - WarShip *ships
+  + addNewShip(WarShip *ship) void
+  + decommisionShip(WarShip *ship) void
+} 
+
+class WarShip
+
+Navy o-- "*" WarShip
+```
+### > Association vs Aggregation
+- major difference
+  - aggregation has a container that `contain`/`owns` component object 
+*Association*
+```mermaid
+classDiagram
+    class Employee {
+        - string name
+        - Department* department
+        + Employee(name: string)
+        + setDepartment(dept: Department*) void
+        + displayInfo() void
+    }
+    class Department {
+        - string name
+        + Department(name: string)
+        + getName() string
+    }
+
+    Employee --> Department : has a
+```
+*Aggregation*
+```mermaid
+classDiagram
+    class Employee {
+        - string name
+        - Department* department
+        + Employee(name: string)
+        + setDepartment(dept: Department*) void
+        + displayInfo() void
+    }
+    class Department {
+        - string name
+        - Employee[] employees
+        + Department(name: string)
+        + addEmployee(emp: Employee*) void
+        + getName() string
+    }
+
+    Employee --o Department : part of
+```
+### > Composition
 ### > Generalisation
 ---
 ## Polymorphism and Multiple inheritance

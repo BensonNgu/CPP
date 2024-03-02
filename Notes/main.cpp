@@ -102,17 +102,27 @@ namespace NS{
     int j;
 }
 
+class Engine{
+public:
+    void start(){
+        cout << "Starting engine..." << endl;
+    }
+
+};
+
+class Car{
+public:
+    void start(Engine *engine){
+        engine->start();
+    }
+
+};
+
 int main(){
-    // NS::i = NS::j = 10;
-    // cout << NS::i * NS::j << endl;
+    Car *car = new Car();
+    Engine *engine = new Engine();
 
-    // using namespace NS;
-    // cout << i * j << endl;
-
-    int x = 5;
-    int * ptr;
-    ptr = &x;
-    cout << x << endl << *(ptr);
+    car->start(engine);
 
     return 0;
 }
