@@ -146,43 +146,70 @@ build helper.exe: CXX_EXECUTABLE_LINKER__helper_Debug CMakeFiles/helper.dir/Help
   TARGET_PDB = helper.exe.dbg
 
 # =============================================================================
-# Object build statements for EXECUTABLE target copyConstructorDesctructor
+# Object build statements for EXECUTABLE target copyConstructorDestructor
 
 
 #############################################
-# Order-only phony target for copyConstructorDesctructor
+# Order-only phony target for copyConstructorDestructor
 
-build cmake_object_order_depends_target_copyConstructorDesctructor: phony || CMakeFiles/copyConstructorDesctructor.dir
+build cmake_object_order_depends_target_copyConstructorDestructor: phony || CMakeFiles/copyConstructorDestructor.dir
 
-build CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/main.cpp.obj: CXX_COMPILER__copyConstructorDesctructor_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Object_Oriented_Programming/main.cpp || cmake_object_order_depends_target_copyConstructorDesctructor
-  DEP_FILE = CMakeFiles\copyConstructorDesctructor.dir\Object_Oriented_Programming\main.cpp.obj.d
+build CMakeFiles/copyConstructorDestructor.dir/Object_Oriented_Programming/main.cpp.obj: CXX_COMPILER__copyConstructorDestructor_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Object_Oriented_Programming/main.cpp || cmake_object_order_depends_target_copyConstructorDestructor
+  DEP_FILE = CMakeFiles\copyConstructorDestructor.dir\Object_Oriented_Programming\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\copyConstructorDesctructor.dir
-  OBJECT_FILE_DIR = CMakeFiles\copyConstructorDesctructor.dir\Object_Oriented_Programming
-
-build CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/Model.cpp.obj: CXX_COMPILER__copyConstructorDesctructor_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Object_Oriented_Programming/Model.cpp || cmake_object_order_depends_target_copyConstructorDesctructor
-  DEP_FILE = CMakeFiles\copyConstructorDesctructor.dir\Object_Oriented_Programming\Model.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\copyConstructorDesctructor.dir
-  OBJECT_FILE_DIR = CMakeFiles\copyConstructorDesctructor.dir\Object_Oriented_Programming
+  OBJECT_DIR = CMakeFiles\copyConstructorDestructor.dir
+  OBJECT_FILE_DIR = CMakeFiles\copyConstructorDestructor.dir\Object_Oriented_Programming
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target copyConstructorDesctructor
+# Link build statements for EXECUTABLE target copyConstructorDestructor
 
 
 #############################################
-# Link the executable copyConstructorDesctructor.exe
+# Link the executable copyConstructorDestructor.exe
 
-build copyConstructorDesctructor.exe: CXX_EXECUTABLE_LINKER__copyConstructorDesctructor_Debug CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/main.cpp.obj CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/Model.cpp.obj
+build copyConstructorDestructor.exe: CXX_EXECUTABLE_LINKER__copyConstructorDestructor_Debug CMakeFiles/copyConstructorDestructor.dir/Object_Oriented_Programming/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\copyConstructorDesctructor.dir
+  OBJECT_DIR = CMakeFiles\copyConstructorDestructor.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = copyConstructorDesctructor.exe
-  TARGET_IMPLIB = libcopyConstructorDesctructor.dll.a
-  TARGET_PDB = copyConstructorDesctructor.exe.dbg
+  TARGET_FILE = copyConstructorDestructor.exe
+  TARGET_IMPLIB = libcopyConstructorDestructor.dll.a
+  TARGET_PDB = copyConstructorDestructor.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Main
+
+
+#############################################
+# Order-only phony target for Main
+
+build cmake_object_order_depends_target_Main: phony || CMakeFiles/Main.dir
+
+build CMakeFiles/Main.dir/main.cpp.obj: CXX_COMPILER__Main_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/main.cpp || cmake_object_order_depends_target_Main
+  DEP_FILE = CMakeFiles\Main.dir\main.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Main.dir
+  OBJECT_FILE_DIR = CMakeFiles\Main.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Main
+
+
+#############################################
+# Link the executable Main.exe
+
+build Main.exe: CXX_EXECUTABLE_LINKER__Main_Debug CMakeFiles/Main.dir/main.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Main.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Main.exe
+  TARGET_IMPLIB = libMain.dll.a
+  TARGET_PDB = Main.exe.dbg
 
 
 #############################################
@@ -210,7 +237,9 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build copyConstructorDesctructor: phony copyConstructorDesctructor.exe
+build Main: phony Main.exe
+
+build copyConstructorDestructor: phony copyConstructorDestructor.exe
 
 build file: phony file.exe
 
@@ -226,7 +255,7 @@ build helper: phony helper.exe
 #############################################
 # Folder: C:/Users/Benson/Documents/GitHub/CPP/Notes/cmake-build-debug
 
-build all: phony functions.exe file.exe helper.exe copyConstructorDesctructor.exe
+build all: phony functions.exe file.exe helper.exe copyConstructorDestructor.exe Main.exe
 
 # =============================================================================
 # Built-in targets

@@ -116,20 +116,20 @@ public:
 
 
 // protected destructor
-//class Example{
-//    friend void release(Example* ex);
-//protected :
-//    ~Example(){cout << "destructor called" << endl;}
-//public :
-//    Example(){
-//        cout << "Constructor called" << endl;
-//    }
-//};
-//
-//void release(Example* ex){
-//    cout << "Release called" << endl;
-//    delete ex;
-//}
+class Example{
+    friend void release(Example* ex);
+protected :
+    ~Example(){cout << "destructor called" << endl;}
+public :
+    Example(){
+        cout << "Constructor called" << endl;
+    }
+};
+
+void release(Example* ex){
+    cout << "Release called" << endl;
+    delete ex;
+}
 
 // Association classes
 class Person;

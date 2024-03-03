@@ -2214,7 +2214,7 @@ int main(){
 - absorbing their attributes and behaviours
 - adding, changing or replacing some of the behaviours
 #### Advantages
-- A subtantial part of the code is already written
+- A substantial part of the code is already written
 - base class is extendable without duplicating the existing base class properties
 - reliable as existing code is tested
 - we can have collections od multiple related types due to "is a" relationship
@@ -2287,7 +2287,12 @@ The following is never inherit by the derived class:
 - Overload = operator (need to redefine again)
 ---
 ## Polymorphism and Multiple inheritance
-### > Subheading
+### > 
+
+### > Abstract Class 
+
+### > Multiple Inheritance
+
 ---
 ## Handling files
 ### > Subheading
@@ -2468,7 +2473,7 @@ sizeof(int*): 8
 > On most 32-bit system, the pointer size is 4, while on 64-bit system, the pointer size is 8 which is double of 32-bit system.
 ### > <mark style="background-color:#FFA50035;">`unsigned`</mark> operator
 - the variables that declare as `unsigned` will only store values that is greater than or equal to 0
-- if not, the compiler will still compile it but a  gibberish number will be passed to cout
+- if not, the compiler will still compile it but a  gibberish number will be passed to `cout`
 ### > <mark style="background-color:#FFA50035;">`friend`</mark> 
 - we are not only can  declare a friend function, we can declare a friend class by following way:
   ```cpp

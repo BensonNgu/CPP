@@ -51,10 +51,10 @@ void move2(){
     test1.print();
 }
 
-//void privateDestructor(){
-//    Example *eg = new Example();
-//    release(eg);
-//}
+void privateDestructor(){
+    Example *eg = new Example();
+    release(eg);
+}
 
 void associationClass(){
     Person *worker = new Person("John");
@@ -83,7 +83,7 @@ void nestedClasses2(){
 
 int main(){
 
-//    privateDestructor();
+    privateDestructor();
 
     return 0;
 }

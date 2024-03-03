@@ -12,5 +12,6 @@ add_executable(file ./Handling_Files/src/main.cpp)
 add_executable(helper ./Helper/Keyboard.cpp 
 ./Helper/Keyboard.h)
 
-add_executable(copyConstructorDesctructor ./Object_Oriented_Programming/main.cpp
-        ./Object_Oriented_Programming/Model.cpp)
+add_executable(copyConstructorDestructor ./Object_Oriented_Programming/main.cpp)
+
+add_executable(Main main.cpp)
