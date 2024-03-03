@@ -116,7 +116,6 @@
       - [\> Linked lists](#-linked-lists)
     - [\> Itorators](#-itorators)
       - [\> Smart Pointer?](#-smart-pointer)
-  - [Example](#example)
   - [Special Keyword](#special-keyword)
     - [\> `void*` (void pointer)](#-void-void-pointer)
     - [\> `typedef`](#-typedef)
@@ -2904,7 +2903,9 @@ void Number<T>::display(){
 #### > Smart Pointer?
 - designed to be safe
 - help us detect when we past the end of the container  
+
 [Example](./Container/main.cpp)
+
 ---
 ## Special Keyword
 ### > <mark style="background-color:#FFA50035;">`void*`</mark> (void pointer)
