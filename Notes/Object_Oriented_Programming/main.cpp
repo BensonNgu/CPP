@@ -81,9 +81,56 @@ void nestedClasses2(){
 
 }
 
+void polymorphism1(){
+    Contractor ct1("Bob", "Smith", 40, 10);
+    ct1.print();
+    cout << "\nbreak point\n" << endl;
+    ct1.Employee::print();
+
+    cout << "\nbreak point\n" << endl;
+    cout << "Calling the base class and derived class display()" << endl;
+    ct1.display();
+//    ct1.display(2);
+    ct1.Employee::display(2);
+}
+
+void polymorphism2(){
+    Contractor ct1("Bob", "Smith", 40, 10);
+    cout << "use derived class reference" << endl;
+    Contractor& r1 = ct1;
+    r1.print();
+
+    cout << "\nbreak point\n" << endl;
+
+    cout << "use base class reference" << endl;
+    Employee& r2 = ct1;
+    r2.print();
+
+    cout << "\nbreak point\n" << endl;
+
+    cout << "use derived class pointer" << endl;
+    Contractor* p1 = &ct1;
+    p1->print();
+
+    cout << "\nbreak point\n" << endl;
+
+    cout << "Use base class pointer" << endl;
+    Employee* p2 = &ct1;
+    p2->print();
+
+    cout << "\nbreak point\n" << endl;
+
+    cout << "Using static_cast" << endl;
+    // p1 = Contractor* and p2 = Employee*
+    // static cast the base class pointer to derived class pointer
+//    p1 = p2;          // incompatible pointer type assigned to Contractor* from Employee*
+    p1 = static_cast<Contractor*>(p2);
+    p1->print();
+}
+
 int main(){
 
-    privateDestructor();
+    polymorphism2();
 
     return 0;
 }

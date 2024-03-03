@@ -1901,8 +1901,8 @@ double getMax(int x, int y);
           statement;
         }
         ```
-      [Example](./Overloading/FriendFunction/)
-      [More on friend](README.md#-)
+      [Example](./Overloading/FriendFunction/)  
+      [More on friend](README.md#-friend)
   3. Copy Assignment Operator
      1. Function prototype: 
         ```cpp
@@ -2287,7 +2287,87 @@ The following is never inherit by the derived class:
 - Overload = operator (need to redefine again)
 ---
 ## Polymorphism and Multiple inheritance
-### > 
+### > What is Polymorphism?
+- not only inheritance
+  - retain base behaviour
+  - add new behaviour
+- But also want to ==MODIFY BASE BEHAVIOURS (Override)==
+```cpp
+class Employee{
+protected:
+    char *firstName;
+    char *lastName;
+public:
+    Employee(const char *first, const char *last) {
+        firstName = new char[strlen(first) + 1];
+        lastName = new char[strlen(last) + 1];
+        strcpy(firstName, first);
+        strcpy(lastName, last);
+    }
+    ~Employee(){
+        delete[] firstName;
+        delete[] lastName;
+    }
+
+    void print() const{
+        cout << "Employee::print() called" << endl;
+        cout << firstName << " " << lastName << endl;
+    }
+
+    void display(int num) const{
+        cout << "Employee::display() called" << endl;
+        cout << firstName << " " << lastName << endl;
+    }
+};
+
+class Contractor : public Employee{
+private:
+    float rate;
+    float hours;
+public:
+    Contractor(const char *first, const char *last, float r, float h) : Employee(first, last), rate(r), hours(h){}
+    float getPay() const {return rate * hours;}
+    void print() const{
+        cout << "Contractor::print() called" << endl;
+        Employee::print();          // way to call the base class method
+        cout << " is a contractor with pay of $" << setiosflags(ios::fixed | ios::showpoint) << setprecision(2) << getPay() << endl;
+    }
+
+    void display(){
+        cout << "Contractor::display() called" << endl;
+        cout << firstName << " " << lastName << endl;
+    }
+};
+```
+```cpp
+int main(){
+    Contractor ct1("Bob", "Smith", 40, 10);
+    ct1.print();
+    cout << "\nbreak point\n" << endl;
+    ct1.Employee::print();
+
+    cout << "\nbreak point\n" << endl;
+    cout << "Calling the base class and derived class display()" << endl;
+    ct1.display();
+//    ct1.display(2);
+    ct1.Employee::display(2);
+}
+```
+*The mothod display(int) is hidden*
+- we can access the derived class `display()` by `ct1.display()`
+- the base class `display(int)` has a different signature, and suppose can be accessed by `ct1.display(2)`. Unfortunately no.
+- It is ==OUT OF SCOPE==
+#### > Step for any class member function is called
+1. The compiler will look for the member function in the derived class which match the function name
+2. If not found, it will look for the function in the base class
+3. If not found, it continues up the inheritance hierarchy, until it finds the function
+4. If it does not found the function at any class in the hierarchy, this will result in compilation error  
+
+*static_cast*
+- can be use to store the content of an object as if were of a different type
+- let the compiler know that we are okay to ==downgrading== the precision  
+[Example](./Notes/Object_Oriented_Programming/main.cpp)
+
 
 ### > Abstract Class 
 
@@ -2347,7 +2427,7 @@ DP Index[10];
 ```
 
 ### > <mark style="background-color:#FFA50035;">`auto`</mark>
-- allow the compiler to figures out the type of something based on the initializer
+- allow the compiler to figure out the type of something based on the initializer
 ```c++
 auto whatA = 5;
 auto whatB = 5.5;
@@ -2502,7 +2582,7 @@ sizeof(int*): 8
   };
   // ClassC is not a friend of ClassA, thus error show : member "ClassA::a" is inaccessible
   ```
-  - friend can access to private and protected members
+  - friend can access to private and protected members  
     [Example](./Overloading/FriendFunction/FriendFunction.cpp)
-  - friend with multiple classes
+  - friend with multiple classes  
     [Example](./Overloading/FriendFunction/FriendFunction.cpp)

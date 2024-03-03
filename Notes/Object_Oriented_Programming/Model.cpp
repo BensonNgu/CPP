@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <cstring>
+#include <iomanip>
 
 using namespace std;
 // copy constructor
@@ -232,4 +234,53 @@ public:
     Cube(){};
     void setNode(int a, int b, int c){}
 
+};
+
+
+// polymorphism
+// the following is the code that show the Inheritance only
+class Employee{
+protected:
+    char *firstName;
+    char *lastName;
+public:
+    Employee(const char *first, const char *last) {
+        firstName = new char[strlen(first) + 1];
+        lastName = new char[strlen(last) + 1];
+        strcpy(firstName, first);
+        strcpy(lastName, last);
+    }
+    ~Employee(){
+        delete[] firstName;
+        delete[] lastName;
+    }
+
+    void print() const{
+        cout << "Employee::print() called" << endl;
+        cout << firstName << " " << lastName << endl;
+    }
+
+    void display(int num) const{
+        cout << "Employee::display() called" << endl;
+        cout << firstName << " " << lastName << endl;
+    }
+};
+
+class Contractor : public Employee{
+private:
+    float rate;
+    float hours;
+public:
+    Contractor(const char *first, const char *last, float r, float h) : Employee(first, last), rate(r), hours(h){}
+    float getPay() const {return rate * hours;}
+    void print() const{
+        cout << "Contractor::print() called" << endl;
+        Employee::print();          // way to call the base class method
+        cout << " is a contractor with pay of $" << setiosflags(ios::fixed | ios::showpoint) << setprecision(2) << getPay() << endl;
+    }
+
+    void display(){
+        cout << "Contractor::display() called" << endl;
+        cout << firstName << " " << lastName << endl;
+    }
 };
