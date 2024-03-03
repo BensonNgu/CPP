@@ -109,7 +109,14 @@
     - [\> Explicit type specification](#-explicit-type-specification)
   - [Class Templates](#class-templates)
   - [Container](#container)
-    - [\> Subheading](#-subheading-1)
+    - [\> Intro](#-intro-4)
+    - [\> Why Container](#-why-container)
+      - [\> Queues](#-queues)
+      - [\> Stacks](#-stacks)
+      - [\> Linked lists](#-linked-lists)
+    - [\> Itorators](#-itorators)
+      - [\> Smart Pointer?](#-smart-pointer)
+  - [Example](#example)
   - [Special Keyword](#special-keyword)
     - [\> `void*` (void pointer)](#-void-void-pointer)
     - [\> `typedef`](#-typedef)
@@ -2869,8 +2876,35 @@ void Number<T>::display(){
 }
 ```
 ---
+
 ## Container
-### > Subheading
+### > Intro
+- objects that store a collection of other objects
+### > Why Container
+1. subscript bound checking
+   - when we using array like annotation to access the container
+   - it will check whether the index is within the valid range of the index
+2. memory get tidies up automatically
+  - when you add or remove elements from a container, the container automatically allocates or deallocates memory as needed
+3. inserting elements anywhere may be made easy
+4. pass by reference or value
+5. non-static local arrays cannot be return, but objects of container can
+    - non-static local arrays have automatic storage duration and are destroyed when the function exits
+#### > Queues
+- data structure in which elements are removed in the same order thay were enter
+- FIFO
+#### > Stacks
+- data structures in which elements are removed in the reverse order from which they entered 
+- LILO
+#### > Linked lists
+- provide a method of organising stored data based on a logical order of the data
+### > Itorators
+- object that moves through a container of other objects
+- selects tham at one time without providing direct access to the implementation of that container
+#### > Smart Pointer?
+- designed to be safe
+- help us detect when we past the end of the container  
+[Example](./Container/main.cpp)
 ---
 ## Special Keyword
 ### > <mark style="background-color:#FFA50035;">`void*`</mark> (void pointer)
