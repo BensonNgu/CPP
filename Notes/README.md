@@ -81,7 +81,10 @@
     - [\> Aggreagation](#-aggreagation)
     - [\> Association vs Aggregation](#-association-vs-aggregation)
     - [\> Composition](#-composition)
-    - [\> Generalisation](#-generalisation)
+    - [\> Nested Class](#-nested-class)
+    - [\> Inheritance](#-inheritance)
+      - [Advantages](#advantages)
+      - [Derived class](#derived-class)
   - [Polymorphism and Multiple inheritance](#polymorphism-and-multiple-inheritance)
     - [\> Subheading](#-subheading)
   - [Handling files](#handling-files)
@@ -1376,9 +1379,11 @@ namespace myLib{
 1.  public
     - directly access from outside of the object 
 2.  private
-    - can only be directly access by the internal methods 
+    - can only be directly access within the class that declares them
+    - but not accessible by the derived class
 3.  protected
-    - can be directly access by the subclasses, but not the arbitary external objects
+    - can be directly access by the class that declares them and the derived class 
+    - but not the arbitary external objects
 ### > Encapsulation
 - encapsulate component = hide them in a container
 - implement it using `private`
@@ -1533,7 +1538,7 @@ Destructor called
    - Yes
    - Reason to make it private:
       1. we may create an object with certain values only under conditions controlled from within an object 
-      2. Can be used in the context of [inheritance](#inheritance)
+      2. Can be used in the context of [inheritance](#-inheritance)
 ### > Copy And Moving
 #### Copy
 - in two form
@@ -1618,7 +1623,7 @@ Destructor called
     5
     3
     ```
-  3. Copy Assignment Operator: `X& operator=(const X&)`
+  1. Copy Assignment Operator: `X& operator=(const X&)`
       - copy assignment + operator overload
       - both object must be initialise first
       - perform deep copy as needed just like the copy constructor
@@ -2091,6 +2096,8 @@ class Navy{
 class WarShip
 
 Navy o-- "*" WarShip
+
+note for Navy "ships is the array of WarShip"
 ```
 ### > Association vs Aggregation
 - major difference
@@ -2125,16 +2132,159 @@ classDiagram
     }
     class Department {
         - string name
-        - Employee[] employees
+        - vector<Employee*> employees
         + Department(name: string)
         + addEmployee(emp: Employee*) void
         + getName() string
     }
 
     Employee --o Department : part of
+
+    note for Department "employees is a container that store Employee pointer"
 ```
 ### > Composition
-### > Generalisation
+- stronger version of aggregation
+- the lifespan of the part is synchronised with the container 
+- parts can be included in one instance at one time
+*Normal Array*
+```mermaid
+classDiagram
+class Vertex
+
+class Cube{
+  - Vertex : points[8] 
+  + Cube(float : coordinates[])
+}
+
+Cube o-- Vertex
+```
+*Dynamic Memory Allocation*
+```mermaid
+classDiagram
+class Vertex
+
+class Cube{
+  -Vertex *points
+  +Cube()
+  + ~Cube()
+}
+
+Cube o-- "8" Vertex
+```
+> The destructor will delete all the object in the container by `delete[] points`
+
+### > Nested Class
+- Nested class does not contain the attribute of the outer class
+- but can access those attributes
+```cpp
+class A{
+private:
+  int a;
+  classB{
+    private:
+      int b;
+    public:
+      // contructor for B
+      B(int bb) : b(bb){}
+  }
+public:
+  // constructor for A
+  A(int aa) : a(aa) {}
+  class C{
+    private: 
+      int c;
+    public:
+      // constructor for C
+      C(int cc) : c(cc) {}
+  } 
+}
+
+int main(){
+  A a(5);
+  A::C c(10);
+
+  A::b b(5);    // inaccessible
+
+}
+```
+
+![nested class](/Notes/img/nested_class.png)
+### > Inheritance
+- new classes created from existing class
+- absorbing their attributes and behaviours
+- adding, changing or replacing some of the behaviours
+#### Advantages
+- A subtantial part of the code is already written
+- base class is extendable without duplicating the existing base class properties
+- reliable as existing code is tested
+- we can have collections od multiple related types due to "is a" relationship
+#### Derived class
+- inherits attributes and behaviour from its base class
+- add new properties to those inherited from the base class
+```mermaid
+classDiagram
+direction LR
+class Person{
+  - int id
+  - string firstName
+  - string lastName
+  + setData(id:int, fn:string, ln:string) void
+  + printData() void
+}
+
+class Customer{
+  - double balanceDue
+  + setBalanceDue(amount:double) void
+  + outputBalance() void;
+}
+
+Person <|-- Customer
+```
+```cpp
+class Person{
+private:
+  int id;
+  string firstName;
+  string lastName;
+public:
+  void setData(int id, string fn, string ln){
+    this->id = id;
+    this->firstName = fn;
+    this->lastName = ln;
+  }
+  void printData(){
+    cout << "ID: " << idNum << ", Name: " << firstName << " " << lastName << endl;
+  }
+}
+
+class Custmer{
+private:
+  double balanceDue
+public:
+  void setBalanceDue(double amount){
+    balanceDue = amount;
+  }
+  void outputBalance(){
+    cout << "Balance due $" << balanceDue << endl;
+  }
+}
+
+int main(){
+  Customer cust1;
+
+  cust1.setData(1, "John", "Wick");
+  cust1.printData();
+
+  cust1.setBalanceDue(50);
+  cust1.outputBalance();
+}
+```
+The following is never inherit by the derived class:
+- Constructor
+- Destructor
+- friend function   (need to redefine again)
+- Overload new operator
+- Overload = operator (need to redefine again)
 ---
 ## Polymorphism and Multiple inheritance
 ### > Subheading
