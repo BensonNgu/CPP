@@ -2676,7 +2676,9 @@ class StudentEmployee : public Student, public Employee{
     ...
 };
 ```
+
 [Example on diamondProblem()](./Object_Oriented_Programming/main.cpp)
+
 ---
 ## Handling files
 ### > Subheading
