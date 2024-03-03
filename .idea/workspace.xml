@@ -24,6 +24,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="043ce491-6683-4a27-8f90-c8f5498dabb2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/CPP.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-9592de1d3f9d6b630a03.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/.cmake/api/v1/reply/target-helper-Debug-aa57645501b9677202ee.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-e342d7331276a330d3bb.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes/Object_Oriented_Programming/Model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/Object_Oriented_Programming/Model.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes/Object_Oriented_Programming/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/Object_Oriented_Programming/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/.cmake/api/v1/reply/cache-v2-b27e38c1c81116894b6c.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-7066fd57b25d8b2e8e4e.json" beforeDir="false" />
@@ -81,28 +94,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="CMake Application.copyConstructorDesctructor">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="copyConstructorDesctructor" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Notes" TARGET_NAME="copyConstructorDesctructor" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Notes" RUN_TARGET_NAME="copyConstructorDesctructor">
@@ -142,6 +155,7 @@
       <updated>1709425428270</updated>
       <workItem from="1709425429488" duration="273000" />
       <workItem from="1709427980443" duration="738000" />
+      <workItem from="1709429558435" duration="372000" />
     </task>
     <servers />
   </component>

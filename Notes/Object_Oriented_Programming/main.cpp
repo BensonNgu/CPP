@@ -2,6 +2,7 @@
 #include <string>
 #include <utility>
 #include "Model.cpp"
+
 using namespace std;
 
 void copy1(){
@@ -15,10 +16,10 @@ void copy2(){
     Pointier myPoint(5);
     Pointier myPoint2 = myPoint;        // default copy assignment
     cout << "Break point" << endl;
-    myPoint2 = myPoint;              // custom copy assignment  
+    myPoint2 = myPoint;              // custom copy assignment
     myPoint.display();
     myPoint2.display();
-    // conclusion: to call the custom copy assignment operator, both object need to be initialised first. 
+    // conclusion: to call the custom copy assignment operator, both object need to be initialised first.
 }
 
 void move1(){
@@ -50,10 +51,10 @@ void move2(){
     test1.print();
 }
 
-void privateDestructor(){
-    Example *eg = new Example();
-    release(eg);
-}
+//void privateDestructor(){
+//    Example *eg = new Example();
+//    release(eg);
+//}
 
 void associationClass(){
     Person *worker = new Person("John");
@@ -82,7 +83,7 @@ void nestedClasses2(){
 
 int main(){
 
-    privateDestructor();
+//    privateDestructor();
 
     return 0;
 }

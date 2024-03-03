@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/benso/School$ Stuff/CSCI251$ Advanced$ Programming/Notes/cmake-build-debug/
+cmake_ninja_workdir = C$:/Users/Benson/Documents/GitHub/CPP/Notes/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target functions
 
@@ -49,13 +49,13 @@ cmake_ninja_workdir = C$:/Users/benso/School$ Stuff/CSCI251$ Advanced$ Programmi
 
 build cmake_object_order_depends_target_functions: phony || CMakeFiles/functions.dir
 
-build CMakeFiles/functions.dir/Functions/src/main.cpp.obj: CXX_COMPILER__functions_unscanned_Debug C$:/Users/benso/School$ Stuff/CSCI251$ Advanced$ Programming/Notes/Functions/src/main.cpp || cmake_object_order_depends_target_functions
+build CMakeFiles/functions.dir/Functions/src/main.cpp.obj: CXX_COMPILER__functions_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Functions/src/main.cpp || cmake_object_order_depends_target_functions
   DEP_FILE = CMakeFiles\functions.dir\Functions\src\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\functions.dir
   OBJECT_FILE_DIR = CMakeFiles\functions.dir\Functions\src
 
-build CMakeFiles/functions.dir/Functions/src/print.cpp.obj: CXX_COMPILER__functions_unscanned_Debug C$:/Users/benso/School$ Stuff/CSCI251$ Advanced$ Programming/Notes/Functions/src/print.cpp || cmake_object_order_depends_target_functions
+build CMakeFiles/functions.dir/Functions/src/print.cpp.obj: CXX_COMPILER__functions_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Functions/src/print.cpp || cmake_object_order_depends_target_functions
   DEP_FILE = CMakeFiles\functions.dir\Functions\src\print.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\functions.dir
@@ -88,7 +88,7 @@ build functions.exe: CXX_EXECUTABLE_LINKER__functions_Debug CMakeFiles/functions
 
 build cmake_object_order_depends_target_file: phony || CMakeFiles/file.dir
 
-build CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj: CXX_COMPILER__file_unscanned_Debug C$:/Users/benso/School$ Stuff/CSCI251$ Advanced$ Programming/Notes/Handling_Files/src/main.cpp || cmake_object_order_depends_target_file
+build CMakeFiles/file.dir/Handling_Files/src/main.cpp.obj: CXX_COMPILER__file_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Handling_Files/src/main.cpp || cmake_object_order_depends_target_file
   DEP_FILE = CMakeFiles\file.dir\Handling_Files\src\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\file.dir
@@ -112,12 +112,84 @@ build file.exe: CXX_EXECUTABLE_LINKER__file_Debug CMakeFiles/file.dir/Handling_F
   TARGET_IMPLIB = libfile.dll.a
   TARGET_PDB = file.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target helper
+
+
+#############################################
+# Order-only phony target for helper
+
+build cmake_object_order_depends_target_helper: phony || CMakeFiles/helper.dir
+
+build CMakeFiles/helper.dir/Helper/Keyboard.cpp.obj: CXX_COMPILER__helper_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Helper/Keyboard.cpp || cmake_object_order_depends_target_helper
+  DEP_FILE = CMakeFiles\helper.dir\Helper\Keyboard.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\helper.dir
+  OBJECT_FILE_DIR = CMakeFiles\helper.dir\Helper
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target helper
+
+
+#############################################
+# Link the executable helper.exe
+
+build helper.exe: CXX_EXECUTABLE_LINKER__helper_Debug CMakeFiles/helper.dir/Helper/Keyboard.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\helper.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = helper.exe
+  TARGET_IMPLIB = libhelper.dll.a
+  TARGET_PDB = helper.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target copyConstructorDesctructor
+
+
+#############################################
+# Order-only phony target for copyConstructorDesctructor
+
+build cmake_object_order_depends_target_copyConstructorDesctructor: phony || CMakeFiles/copyConstructorDesctructor.dir
+
+build CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/main.cpp.obj: CXX_COMPILER__copyConstructorDesctructor_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Object_Oriented_Programming/main.cpp || cmake_object_order_depends_target_copyConstructorDesctructor
+  DEP_FILE = CMakeFiles\copyConstructorDesctructor.dir\Object_Oriented_Programming\main.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\copyConstructorDesctructor.dir
+  OBJECT_FILE_DIR = CMakeFiles\copyConstructorDesctructor.dir\Object_Oriented_Programming
+
+build CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/Model.cpp.obj: CXX_COMPILER__copyConstructorDesctructor_unscanned_Debug C$:/Users/Benson/Documents/GitHub/CPP/Notes/Object_Oriented_Programming/Model.cpp || cmake_object_order_depends_target_copyConstructorDesctructor
+  DEP_FILE = CMakeFiles\copyConstructorDesctructor.dir\Object_Oriented_Programming\Model.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\copyConstructorDesctructor.dir
+  OBJECT_FILE_DIR = CMakeFiles\copyConstructorDesctructor.dir\Object_Oriented_Programming
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target copyConstructorDesctructor
+
+
+#############################################
+# Link the executable copyConstructorDesctructor.exe
+
+build copyConstructorDesctructor.exe: CXX_EXECUTABLE_LINKER__copyConstructorDesctructor_Debug CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/main.cpp.obj CMakeFiles/copyConstructorDesctructor.dir/Object_Oriented_Programming/Model.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\copyConstructorDesctructor.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = copyConstructorDesctructor.exe
+  TARGET_IMPLIB = libcopyConstructorDesctructor.dll.a
+  TARGET_PDB = copyConstructorDesctructor.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\benso\School Stuff\CSCI251 Advanced Programming\Notes\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\Benson\Documents\GitHub\CPP\Notes\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -128,7 +200,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\benso\School Stuff\CSCI251 Advanced Programming\Notes\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S"C:\Users\benso\School Stuff\CSCI251 Advanced Programming\Notes" -B"C:\Users\benso\School Stuff\CSCI251 Advanced Programming\Notes\cmake-build-debug""
+  COMMAND = cmd.exe /C "cd /D C:\Users\Benson\Documents\GitHub\CPP\Notes\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Benson\Documents\GitHub\CPP\Notes -BC:\Users\Benson\Documents\GitHub\CPP\Notes\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -138,9 +210,13 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build copyConstructorDesctructor: phony copyConstructorDesctructor.exe
+
 build file: phony file.exe
 
 build functions: phony functions.exe
+
+build helper: phony helper.exe
 
 # =============================================================================
 # Folder targets.
@@ -148,9 +224,9 @@ build functions: phony functions.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/benso/School Stuff/CSCI251 Advanced Programming/Notes/cmake-build-debug
+# Folder: C:/Users/Benson/Documents/GitHub/CPP/Notes/cmake-build-debug
 
-build all: phony functions.exe file.exe
+build all: phony functions.exe file.exe helper.exe copyConstructorDesctructor.exe
 
 # =============================================================================
 # Built-in targets
@@ -159,14 +235,14 @@ build all: phony functions.exe file.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake C$:/Users/benso/School$ Stuff/CSCI251$ Advanced$ Programming/Notes/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeRCCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake C$:/Users/Benson/Documents/GitHub/CPP/Notes/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeRCCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake C$:/Users/benso/School$ Stuff/CSCI251$ Advanced$ Programming/Notes/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeRCCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake C$:/Users/Benson/Documents/GitHub/CPP/Notes/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeRCCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
 
 
 #############################################

@@ -10,7 +10,7 @@ public:
     MyClass(const MyClass& other){
         cout << "Copy constructor called" << endl;
         data = other.data;
-    }   
+    }
     MyClass(int value) : data(value){
         cout << "Normal constructor called" << endl;
     }
@@ -21,7 +21,7 @@ public:
 };
 
 // copy assignment operator (=) overload
-class Pointier 
+class Pointier
 {
 public:
     int *x;
@@ -116,26 +116,26 @@ public:
 
 
 // protected destructor
-class Example{
-    friend void release(Example* ex);
-    protected :
-        ~Example(){cout << "desctructor called" << endl;}
-    public :
-        Example(){
-            cout << "Constructor called" << endl;
-        }
-};
-
-void release(Example* ex){
-    cout << "Release called" << endl;
-    delete ex;
-}
+//class Example{
+//    friend void release(Example* ex);
+//protected :
+//    ~Example(){cout << "destructor called" << endl;}
+//public :
+//    Example(){
+//        cout << "Constructor called" << endl;
+//    }
+//};
+//
+//void release(Example* ex){
+//    cout << "Release called" << endl;
+//    delete ex;
+//}
 
 // Association classes
 class Person;
 class Contract;
 class Company{
-    string name;    
+    string name;
     string address;
     Contract *contr;
 public:
@@ -196,7 +196,7 @@ private:
     private:
         int b;
     public:
-      // contructor for B
+        // contructor for B
         B(int bb) : b(bb){}
 
         void display(){cout << b << endl;}
@@ -206,13 +206,13 @@ public:
     // constructor for A
     A(int aa) : a(aa), b(0){}
     class C{
-    private: 
+    private:
         int c;
     public:
         // constructor for C
         C(int cc) : c(cc) {}
         void display() {cout << c << endl;}
-    }; 
+    };
     void display(){cout << a << endl;}
     void createB(int bb){
         b = B(bb);
@@ -222,14 +222,14 @@ public:
 
 class Cube
 {
-    private:
-        struct Vertex{
-            int x, y, z;        
-        };
-        int volume;
-        Vertex node[8];
-    public:
-        Cube(){};
-        void setNode(int a, int b, int c){}
+private:
+    struct Vertex{
+        int x, y, z;
+    };
+    int volume;
+    Vertex node[8];
+public:
+    Cube(){};
+    void setNode(int a, int b, int c){}
 
 };
