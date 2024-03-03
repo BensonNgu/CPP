@@ -26,6 +26,8 @@
   <component name="ChangeListManager">
     <list default="true" id="043ce491-6683-4a27-8f90-c8f5498dabb2" name="Changes" comment="update notes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +138,8 @@
       <workItem from="1709429558435" duration="1681000" />
       <workItem from="1709431519044" duration="576000" />
       <workItem from="1709432112098" duration="10516000" />
-      <workItem from="1709442741437" duration="5000" />
+      <workItem from="1709442741437" duration="617000" />
+      <workItem from="1709444480905" duration="601000" />
     </task>
     <task id="LOCAL-00001" summary="save latest change">
       <option name="closed" value="true" />

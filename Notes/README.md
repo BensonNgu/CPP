@@ -86,11 +86,30 @@
       - [Advantages](#advantages)
       - [Derived class](#derived-class)
   - [Polymorphism and Multiple inheritance](#polymorphism-and-multiple-inheritance)
-    - [\> Subheading](#-subheading)
+    - [\> What is Polymorphism?](#-what-is-polymorphism)
+      - [\> Step for any class member function is called](#-step-for-any-class-member-function-is-called)
+      - [\> `static_cast`](#-static_cast)
+      - [\> Store them as an array](#-store-them-as-an-array)
+      - [\> Virtual function](#-virtual-function)
+    - [\> Abstract Class](#-abstract-class)
+    - [\> How to stop inheritance](#-how-to-stop-inheritance)
+    - [\> Multiple Inheritance](#-multiple-inheritance)
+    - [\> Diamond Problem](#-diamond-problem)
   - [Handling files](#handling-files)
+    - [\> Subheading](#-subheading)
+  - [Generic Programming](#generic-programming)
+    - [\> Intro](#-intro-3)
+    - [\> Function Tempplate and Template Functions](#-function-tempplate-and-template-functions)
+    - [\> Syntax](#-syntax)
+    - [\> How to call](#-how-to-call)
+    - [\> Multiple parameter](#-multiple-parameter)
+    - [\> Function Template Overloading](#-function-template-overloading)
+    - [\> Mixed template/non-template function argument](#-mixed-templatenon-template-function-argument)
+    - [\> Multiple Generic Parameter](#-multiple-generic-parameter)
+    - [\> Explicit type specification](#-explicit-type-specification)
+  - [Class Templates](#class-templates)
+  - [Container](#container)
     - [\> Subheading](#-subheading-1)
-  - [Heading](#heading)
-    - [\> Subheading](#-subheading-2)
   - [Special Keyword](#special-keyword)
     - [\> `void*` (void pointer)](#-void-void-pointer)
     - [\> `typedef`](#-typedef)
@@ -107,6 +126,10 @@
     - [\> `sizeof` operator](#-sizeof-operator)
     - [\> `unsigned` operator](#-unsigned-operator)
     - [\> `friend`](#-friend)
+  - [Special Concept](#special-concept)
+    - [\> Singleton](#-singleton)
+    - [\> Monostate](#-monostate)
+    - [\> Singleton vs Monostate](#-singleton-vs-monostate)
 </details>
 
 ## Procedural Programming
@@ -2683,7 +2706,170 @@ class StudentEmployee : public Student, public Employee{
 ## Handling files
 ### > Subheading
 ---
-## Heading
+## Generic Programming
+### > Intro
+- written in term of to-be-specified-later types
+- instantiated when needed for specific types provided as parameter
+### > Function Tempplate and Template Functions
+- Function Template
+  - Prototypes
+  - function blueprint that used for generic data type
+- Template functions
+  - instantiations
+### > Syntax
+```cpp
+template <typename T>
+T reverse( T x){
+  return -x;
+}
+```
+### > How to call
+```cpp
+double amount = -9.86;
+amount = reverse(amount); // implicit designated parameter type
+```
+### > Multiple parameter
+```cpp
+Template <typename T>
+T largest( T x, T y, T z){
+  T largest;
+  largest = (x > y) ? x : y;
+  largest = (largest > z) ? largest : z;
+  return largest;
+}
+
+int main(){
+  int x = 8; y = 6; z = 10;
+  int largestNum = largest(x, y, z);
+}
+```
+### > Function Template Overloading
+```cpp
+Template <typename T>
+void invert( T &x, T &y){
+  T tmp;
+  tmp = x;
+  x = y;
+  y = tmp;
+}
+
+Template <typename T>
+void invert( T &x){
+  x = -x;
+}
+```
+### > Mixed template/non-template function argument
+- the argument of a function template does not only have to be the template argument
+```cpp
+Template <typename T>
+void repeatValue(T val, int num){
+  for(int i=0; i<num; i++){
+    cout << val << " " ;
+  }
+  cout << endl;
+}
+```
+> Make sure you go have [overload the neccessary operator](#-ways-to-define-operator-overloading) for you own defined class. Or else there will be error when you invoke this function template with your own data type
+### > Multiple Generic Parameter
+```cpp
+template <typename T, typename U>
+void displayAndCompare(T val1, U val2) {
+    cout << "val1=" << val1 << ", val2=" << val2 << endl;
+    if(val1 < val2) 
+        cout << "The second one is larger." << endl;
+    else if(val1 == val2)
+        cout << "They are the same." << endl;
+    else
+        cout << "The first one is larger." << endl;
+}
+
+
+// recall on operator overloading
+class PhoneCall {
+    friend ostream& operator<<(ostream&, const PhoneCall&);
+    private:
+        int minutes;
+    public:
+        PhoneCall(int = 0);
+        bool operator<( const PhoneCall & );  // PhoneCall < PhoneCall
+        bool operator<( int n );              // PhoneCall < int
+        bool operator==( const PhoneCall & ); // PhoneCall == PhoneCall
+        bool operator==( int n );             // PhoneCall == int
+};
+
+ostream& operator<<( ostream& ost, const PhoneCall& p ) {
+    ost << p.minutes;
+    return ost;
+}
+
+PhoneCall::PhoneCall(int value) : minutes(value){}
+
+bool PhoneCall::operator<( const PhoneCall& p ) {
+  return ( (minutes < p.minutes)? true: false ); 
+}
+
+bool PhoneCall::operator<( int m ) {
+  return ( (minutes < m)? true: false ); 
+}
+
+bool PhoneCall::operator==( const PhoneCall& p ) {
+  return ( (minutes == p.minutes) ? true: false ); 
+  }
+
+bool PhoneCall::operator==( int m ) {
+  return ( (minutes == m)? true: false ); 
+}
+
+int main() {
+    double a = 3.8, b=4.5, c=6.825;
+    float x = 3.1415;
+    displayAndCompare( a, b );    
+    displayAndCompare( a, x ); 
+    
+    PhoneCall call1( 5 );
+    PhoneCall call2( 8 );
+    
+    displayAndCompare( call1, call2 );
+    displayAndCompare( call1, 5 ); 
+}
+``` 
+
+### > Explicit type specification
+- 
+- syntax `someFunction<int>(someArgument)`
+- want to limit a nnumber of function generated from a template
+- can readily cast between types
+```cpp
+int a = 10;
+float y = 78.09;
+cout <<  reverse(a) << endl;
+cout << reverse<int>(b) << endl;
+```
+---
+## Class Templates
+- similar to function template
+e.g.
+```cpp
+template <typename T>
+class Numbewr{
+  private:
+    T num;
+  public:
+    Number(const T& a);
+    void display();
+}
+template <typename T>
+Number<T>::Number(const T& a){
+  num = a;
+}
+
+template <typename T>
+void Number<T>::display(){
+  cout << num << endl;
+}
+```
+---
+## Container
 ### > Subheading
 ---
 ## Special Keyword
@@ -2892,3 +3078,140 @@ sizeof(int*): 8
     [Example](./Overloading/FriendFunction/FriendFunction.cpp)
   - friend with multiple classes  
     [Example](./Overloading/FriendFunction/FriendFunction.cpp)
+
+---
+
+## Special Concept
+### > Singleton
+- the class where it can only have one instance at a time
+- making the constructor private or protected   
+  - to prevent multiple instance to be created
+```cpp
+class Singleton{
+private:
+  static Singleton* instance;
+
+public:
+  static Singleton* setInstance();
+  static void Shoow(){cout << instance << endl;}
+  static void TidyUp();
+
+protected:
+  Singleton(){};
+
+};
+
+Singleton* Singleton::instance = nullptr;
+
+Singleton* Singleton::setInstance(){
+  if(instance == nullptr){
+    instance = new Singleton();
+  }
+  return instance;
+}
+
+void Singleton::TidyUp(){
+  delete instance;
+  instance = nullptr;
+}
+
+int main(){
+  Singleton::Show();
+  Singleton *eg = Singleton::setInstance();
+
+  eg->Show();
+
+  eg->TidyUp();
+
+  Singleton::Show();
+}
+```
+
+### > Monostate
+- all the instance share the same state
+- contains only 
+  - private static data members
+  - public non-static member functions
+- Any class can use any instance to control the state of the monostate class
+```cpp
+class Admin;
+
+class Lab{
+friend class Admin;
+private:
+  static int labCapacity;
+public:
+  int getLapCapacity(){return labCapacity;}
+};
+
+int Lab::labCapacity = 25;
+
+class Admin{
+private:
+  bool permit;
+  string password;
+public:
+  Admin(string password){
+    if(this->password == "") this->password = password;
+  }
+
+  bool checkPassword(string password){
+    permit = (this->password == password);
+    if(permit) cout << "Correct password" << endl;
+    else cout << "Incorrect password" << endl;
+    return permit;
+  }
+
+  void setLabCapacity(int newCapacity){
+    if(permit){
+      Lab::labCapacity = newCapacity;
+    }
+  }
+
+};
+
+int main(){
+
+  Lab lab1, lab2;
+  Admin admin1("psd1234"), admin2("mypas");
+
+  cout << lab1.getLapCapacity() << endl << lab2.getLapCapacity() << endl;
+
+  if(admin1.checkPassword("psd1234")){
+    admin1.setLabCapacity(20);
+  }
+
+  cout << lab1.getLapCapacity() << endl << lab2.getLapCapacity() << endl;
+
+  if(admin2.checkPassword("psd1234")){
+    admin2.setLabCapacity(30);
+  }
+
+  cout << lab1.getLapCapacity() << endl << lab2.getLapCapacity() << endl;
+  return 0;
+}
+```
+
+Output :
+```shell
+25
+25
+Correct password
+20
+20
+Incorrect password
+20
+20
+```
+
+### > Singleton vs Monostate
+- both have one set of data
+  - monostate can have multiple instances
+- transparency
+  - monostate
+    - transparent
+    - user doesn't need to change modify their behaviour
+    - create monostate class instance in the usual way
+  - singleton
+    - not transparent
+    - require non-standard behaviour
