@@ -181,12 +181,20 @@ float Contract::rate = 70;
 class Base{
 protected:
     int data;
+public:
+    virtual void print() const{
+        cout << "Base::print() called" << endl;
+    }
 };
 
 class Derived : public Base{
 public:
     void display(){
         cout << "Data: " << Base::data << endl;
+    }
+
+    void print() const override{
+        cout << "Derived::print() called" << endl;
     }
 };
 
@@ -284,3 +292,176 @@ public:
         cout << firstName << " " << lastName << endl;
     }
 };
+
+class Shape{
+private:
+    string name;
+public:
+    virtual void draw() = 0;
+};
+
+class Square : public Shape{
+
+public:
+    void draw() override {
+        cout << "Drawing a square" << endl;
+    }
+};
+
+class Rectangle : public Shape{
+public:
+    void draw() override{
+        cout << "Drawing a rectangle" << endl;
+    }
+
+};
+
+class Circle final : public Shape{
+public:
+    virtual void draw() override{
+        cout << "Drawing a circle" << endl;
+    }
+};
+
+//class Oval : public Circle{
+//public:
+//    void draw() override{
+//        cout << "Drawing an oval" << endl;
+//    }
+//};
+
+class Oval : public Shape{
+public:
+    void draw() override{
+        cout << "Drawing an oval" << endl;
+    }
+    virtual void print() final{
+        cout << "Oval::print() called" << endl;
+    }
+};
+
+//class AnotherShape : public Oval{
+//public:
+//    void draw() override{
+//        cout << "Drawing another shape" << endl;
+//    }
+//
+//    void print() override{
+//        cout << "AnotherShape::print() called" << endl;
+//    }
+//};
+
+
+
+// multiple inheritance
+class Boat
+{
+private:
+    string regNumber;
+    int length;
+    int maxSpeed ;
+public:
+    Boat(string regNum, int len, int speed) : regNumber(regNum), length(len), maxSpeed(speed){}
+    void display() const {cout << "Boat: " << regNumber << " " << length << " " << maxSpeed << endl;}
+};
+
+
+class House {
+private:
+    int numberOfBeds;
+    float hArea;
+public:
+    House(int n, float area) : numberOfBeds(n), hArea(area) {}
+    void display() const {cout << "Number of beds: " << numberOfBeds << " Area: " << hArea << endl;};
+};
+
+class HouseBoat : public Boat, public House{
+public:
+    HouseBoat(string regNum, int len, int speed, int n, float area) : Boat(regNum, len, speed), House(n, area){}
+    void display() const{
+        cout << "HouseBoat is :" << endl;
+        Boat::display();
+        House::display();
+    }
+};
+
+
+// diamond problem
+// base class
+class X{
+private:
+    int x;
+public:
+    X(int xx){x=xx;}
+    void showX(){cout << "x = " << x << endl;}
+};
+
+// inherit from X
+class U : public X{
+private:
+    int u;
+public:
+    U(int xx,int uu):X(xx){u=uu;}
+    void showU(){showX();cout << "u = " << u << endl;}
+};
+
+class V : public X{
+private:
+    int v;
+public:
+    V(int xx,int vv):X(xx){v=vv;}
+    void showV(){showX();cout << "v = " << v << endl;}
+};
+
+// place where the diamond problem occurs
+class W : public U, public V{
+private:
+    int w;
+public:
+    W(int,int,int,int);
+    void showW(){showU();showV();cout << "w = " << w << endl;}
+};
+
+W::W(int xx, int uu, int vv , int ww):U(xx,uu),V(xx+10,vv){w=ww;}
+
+// In this case, W is allowed to hold two copies/instances of class X. Sometime can be annoying
+
+// After adding virtual
+
+// base class
+class X2{
+private:
+    int x;
+public:
+    X2(int xx){x=xx;}
+    X2(){x=0;};
+    void showX(){cout << "x = " << x << endl;}
+};
+
+// inherit from X
+class U2 : virtual public X2{
+private:
+    int u;
+public:
+    U2(int uu) {u=uu;}
+    void showU(){showX();cout << "u = " << u << endl;}
+};
+
+class V2 : virtual public X2{
+private:
+    int v;
+public:
+    V2(int vv){v=vv;}
+    void showV(){showX();cout << "v = " << v << endl;}
+};
+
+// place where the diamond problem occurs
+class W2 : public U2, public V2{
+private:
+    int w;
+public:
+    W2(int,int,int,int);
+    void showW(){showU();showV();cout << "w = " << w << endl;}
+};
+
+W2::W2(int xx, int uu, int vv , int ww):X2(xx), U2(uu),V2(vv){w=ww;}

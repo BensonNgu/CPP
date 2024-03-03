@@ -128,9 +128,56 @@ void polymorphism2(){
     p1->print();
 }
 
+void polymorphism3(){
+    Contractor ct1("Bob", "Smith", 40, 10);
+    Employee e1("John", "Doe");
+
+    // Array of Employee
+    Employee* employees[2];
+    employees[0] = &ct1;
+    employees[1] = &e1;
+
+    for(int i = 0; i < 2; i++){
+        employees[i]->print();
+    }
+}
+
+void virtualFunction(){
+    Derived o1;
+    Base o2;
+
+    // Array of base class
+    Base* arr[2];
+    arr[0] = &o1;
+    arr[1] = &o2;
+
+    for(int i = 0; i < 2; i++){
+        arr[i]->print();
+    }
+}
+
+void pureVirtualFunction(){
+//    Shape shape;        // error: cannot declare variable 'shape' to be of abstract type 'Shape'
+    Square square;
+    square.draw();
+
+    Rectangle rectangle;
+    rectangle.draw();
+}
+
+void diamondProblem(){
+    W w(1,2,3,4);
+    w.showW();
+
+    cout << "\nbreak point\n" << endl;
+
+    W2 w2(1,2,3,4);
+    w2.showW();
+}
+
 int main(){
 
-    polymorphism2();
+    diamondProblem();
 
     return 0;
 }

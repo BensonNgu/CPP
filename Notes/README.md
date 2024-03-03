@@ -2292,6 +2292,7 @@ The following is never inherit by the derived class:
   - retain base behaviour
   - add new behaviour
 - But also want to ==MODIFY BASE BEHAVIOURS (Override)==
+  - provided the derived class function have the same name, signature and return type
 ```cpp
 class Employee{
 protected:
@@ -2363,16 +2364,319 @@ int main(){
 3. If not found, it continues up the inheritance hierarchy, until it finds the function
 4. If it does not found the function at any class in the hierarchy, this will result in compilation error  
 
-*static_cast*
-- can be use to store the content of an object as if were of a different type
+#### > `static_cast`
+- can be used to store the content of an object as if were of a different type
 - let the compiler know that we are okay to ==downgrading== the precision  
-[Example](./Notes/Object_Oriented_Programming/main.cpp)
+```cpp
+    Contractor ct1("Bob", "Smith", 40, 10);
+    cout << "use derived class reference" << endl;
+    Contractor& r1 = ct1;
+    r1.print();
 
+    cout << "\nbreak point\n" << endl;
 
+    cout << "use base class reference" << endl;
+    Employee& r2 = ct1;
+    r2.print();
+
+    cout << "\nbreak point\n" << endl;
+
+    cout << "use derived class pointer" << endl;
+    Contractor* p1 = &ct1;
+    p1->print();
+
+    cout << "\nbreak point\n" << endl;
+
+    cout << "Use base class pointer" << endl;
+    Employee* p2 = &ct1;
+    p2->print();
+
+    cout << "\nbreak point\n" << endl;
+
+    cout << "Using static_cast" << endl;
+    // p1 = Contractor* and p2 = Employee*
+    // static cast the base class pointer to derived class pointer
+//    p1 = p2;          // incompatible pointer type assigned to Contractor* from Employee*
+    p1 = static_cast<Contractor*>(p2);
+    p1->print();
+```
+Output:
+```shell
+use derived class reference
+Contractor::print() called
+Employee::print() called
+Bob Smith
+ is a contractor with pay of $400.00
+
+break point
+
+use base class reference
+Employee::print() called
+Bob Smith
+
+break point
+
+use derived class pointer
+Contractor::print() called
+Employee::print() called
+Bob Smith
+ is a contractor with pay of $400.00
+
+break point
+
+Use base class pointer
+Employee::print() called
+Bob Smith
+
+break point
+
+Using static_cast
+Contractor::print() called
+Employee::print() called
+Bob Smith
+ is a contractor with pay of $400.00
+```
+[Example on polymorphism2()](./Object_Oriented_Programming/main.cpp)
+
+#### > Store them as an array
+- Two object is created, one is Contractor type and another one is Employee type
+- Both of them can be stored in the same array of base type  
+```cpp
+    Contractor ct1("Bob", "Smith", 40, 10);
+    Employee e1("John", "Doe");
+
+    // Array of Employee
+    Employee* employees[2];
+    employees[0] = &ct1;
+    employees[1] = &e1;
+    
+    for(int i = 0; i < 2; i++){
+        employees[i]->print();
+    }
+```
+Output :
+```shell
+Employee::print() called
+Bob Smith
+Employee::print() called
+John Doe
+```
+- However, the result is disappointing 
+- It should execute the derived class `print()` method when `employees[0]->print()` which is actually a Contractor is called  
+- To solve it, we can use virtual function  
+[Example on polymorphism3()](./Object_Oriented_Programming/main.cpp)
+
+#### > Virtual function
+- when an object calls a function, the call will go through the vtable(virtual function table) and direct the function call to the relevant version
+- which function can be virtual
+  - all non-static function
+- which function cannot be virtual
+  - constructor
+- Caution :bangbang:
+  - when a class has a virtual function. you should also have a virtual destructor to prevent the following:
+  - If a derived-class object has a base class with a virtual function and non-virtual destructor
+  - when the derived-class object is destroyed/deleted, the base class destructor will be called, but the derived-class destructor will not be called
+```cpp
+class Base{
+public:
+    virtual void print() const{
+        cout << "Base::print() called" << endl;
+    }
+};
+
+class Derived : public Base{
+    
+public:
+    void print() const override {
+        cout << "Derived::print() called" << endl;
+    }
+};
+
+int main(){
+        Derived o1;
+    Base o2;
+
+    // Array of base class
+    Base* arr[2];
+    arr[0] = &o1;
+    arr[1] = &o2;
+
+    for(int i = 0; i < 2; i++){
+        arr[i]->print();
+    }
+    return 0;
+}
+```
+Output :
+```shell
+Derived::print() called
+Base::print() called
+```
 ### > Abstract Class 
+- a class that cannot be instantiated
+- How to do it in C++
+  - declare at least one pure virtual function
+- What is pure virtual function
+  - a function that has no implementation
+  - a function that is declared with the `= 0` syntax
+- Purpose
+  - to provide a common interface for all the derived classes
+  - to enforce the derived classes to implement the pure virtual function
+  - to prevent the instantiation of the base class
+```cpp
+class Shape{
+private:
+    string name;
+public:
+    virtual void draw() = 0;
+};
 
+class Square : public Shape{
+    
+public:
+    void draw() override {
+        cout << "Drawing a square" << endl;
+    }
+};
+
+class Rectangle : public Shape{
+public:
+    void draw() override{
+        cout << "Drawing a rectangle" << endl;
+    }
+};
+
+int main(){
+    //    Shape shape;        // error: cannot declare variable 'shape' to be of abstract type 'Shape'
+    Square square;
+    square.draw();
+
+    Rectangle rectangle;
+    rectangle.draw();
+    return 0;
+}
+```
+Output :
+```shell
+Drawing a square
+Drawing a rectangle
+```
+**Warning** :bangbang:
+- if you have a pure virtual function in base class
+- and you don't override it in the derived class
+- the derived class will also become an abstract class as the pure virtual function can be inherited
+### > How to stop inheritance
+- why to stop
+  - the child class is not suitable to be inherited
+- declare the class as `final`
+```cpp
+ class Circle final : public Shape{
+public:
+virtual void draw() override{
+cout << "Drawing a circle" << endl;
+}
+};
+// the following class has en error when it inherit the Circle class
+class Oval : public Circle{
+public:
+void draw() override{
+cout << "Drawing an oval" << endl;
+}
+};
+```
+**final function**
+- a function that cannot be overridden
+```cpp
+class Oval : public Shape{
+public:
+    void draw() override{
+        cout << "Drawing an oval" << endl;
+    }
+    virtual void print() final{
+        cout << "Oval::print() called" << endl;
+    }
+};
+
+// the following class has en error when it inherits the Oval class and override the print() 
+// as it is a final function
+class AnotherShape : public Oval{
+public:
+    void draw() override{
+        cout << "Drawing another shape" << endl;
+    }
+    
+    void print() override{
+        cout << "AnotherShape::print() called" << endl;
+    }
+};
+```
 ### > Multiple Inheritance
+```mermaid
+classDiagram
+direction LR
 
+class Boat{
+    - string regNumber
+    - int length
+    - int maxSpeed
+    + Boat(regNum : int, len : int, speed : int)
+    + display() void
+}
+
+class House{
+    - int numberOfBed
+    - int float hArea
+    + House(bed : int, area : int)
+    + display() void
+}
+
+class HouseBoat{
+    + HouseBoat(regNum : int, len : int, speed : int, bed : int, area : int)
+    + display() void
+}
+
+Boat <|-- HouseBoat
+House <|-- HouseBoat
+```
+[Example code](./Object_Oriented_Programming/Model.cpp)
+
+### > Diamond Problem
+- a famous problem in multiple inheritance
+- when a class is derived from two classes that are derived from the same base class
+- suppose the previous derived classes has inherited the same attributes from the base class
+- now the new derived class that inherit both the derived classes 
+  - will end up with access to two seperate base class objects
+  - lead to ambiguities and conflicts
+```mermaid
+classDiagram
+direction TB
+Person <|-- Student
+Person <|-- Employee
+Student <|-- StudentEmployee
+Employee <|-- StudentEmployee
+```
+**How to solve this problem**
+- add the `virtual` keyword when inherit the base class
+- in this case, the compiler will treat the Person to be the base class of the StudentEmployee
+- Thus, StudentEmployee will only have access to one copy of the Person class
+```cpp
+class Person{
+    ...
+};
+
+class Student : virtual public Person{
+    ...
+};
+
+class Employee : virtual public Person{
+    ...
+};
+
+class StudentEmployee : public Student, public Employee{
+    ...
+};
+```
+[Example on diamondProblem()](./Object_Oriented_Programming/main.cpp)
 ---
 ## Handling files
 ### > Subheading
