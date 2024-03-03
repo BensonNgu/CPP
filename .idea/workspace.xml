@@ -24,23 +24,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="043ce491-6683-4a27-8f90-c8f5498dabb2" name="Changes" comment="save latest change">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/Object_Oriented_Programming/Model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/Object_Oriented_Programming/Model.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/Object_Oriented_Programming/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/Object_Oriented_Programming/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-89fd0cbd7f9b2172684e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/.cmake/api/v1/reply/index-2024-03-03T01-36-36-0494.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/.cmake/api/v1/reply/target-copyConstructorDesctructor-Debug-8a7b6757c1e0af0ec42a.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/Notes/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes/cmake-build-debug/functions.exe" beforeDir="false" />
-    </list>
+    <list default="true" id="043ce491-6683-4a27-8f90-c8f5498dabb2" name="Changes" comment="update notes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,7 +135,7 @@
       <updated>1709425428270</updated>
       <workItem from="1709425429488" duration="273000" />
       <workItem from="1709427980443" duration="738000" />
-      <workItem from="1709429558435" duration="1146000" />
+      <workItem from="1709429558435" duration="1681000" />
     </task>
     <task id="LOCAL-00001" summary="save latest change">
       <option name="closed" value="true" />
@@ -161,7 +145,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709430048827</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update notes">
+      <option name="closed" value="true" />
+      <created>1709431235688</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709431235688</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update notes">
+      <option name="closed" value="true" />
+      <created>1709431250443</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709431250443</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +186,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="save latest change" />
-    <option name="LAST_COMMIT_MESSAGE" value="save latest change" />
+    <MESSAGE value="update notes" />
+    <option name="LAST_COMMIT_MESSAGE" value="update notes" />
   </component>
 </project>
