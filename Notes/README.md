@@ -676,7 +676,8 @@ for(declaration : expression){
 - The static objects will be stored in memory on the stack
 - Allocation of these memory is at the run-time, and ==use of this memory is persistent==
 - Thus we need to explicitly say when we want to stop using it
-- **Static Variable**
+
+**Static Variable**
   - the variable persists beyond scope and isn't re-initialized with each call to the function
   - the class variable of which it is shared among the class object.
 ### `new` & `delete`
@@ -1094,7 +1095,7 @@ Output :
 ---
 ## Namespace
 ### > Intro
-- optinal scope
+- optional scope
 - help limit the concern about the naming clashes 冲突
 - to avoid name duplication
 - syntax for delaring

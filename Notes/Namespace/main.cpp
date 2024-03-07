@@ -2,7 +2,7 @@
 // #include "counter.h"
 // #include "delay.h"
 // #include "Test.h"
-
+#include "inlineNamespace.h"
 
 using namespace std;
 
@@ -28,7 +28,9 @@ public:
 
 
 int main() {
-
+    namespace latest = mylib::v2;
+    latest::function1();
+    mylib::v1::function1();
     return 0;
 }
 
